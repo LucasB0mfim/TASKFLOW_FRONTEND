@@ -85,18 +85,6 @@ export const Button = styled.button`
   }
 `
 
-export const Select = styled.select`
-  width: 5vw;
-  height: 2vw;
-
-  color: #fff;
-  cursor: pointer;
-
-  border: none;
-  background: #444444;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-`
-
 export const Error = styled.p`
   color: #fff;
   font-size: 1vw;

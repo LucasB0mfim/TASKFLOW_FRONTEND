@@ -5,7 +5,6 @@ export type Tarefa = {
   nome: string;
   custo: string;
   dataLimite: string;
-  ordem: string;
 }
 
 const api = createApi({
