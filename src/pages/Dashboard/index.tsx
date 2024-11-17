@@ -12,12 +12,15 @@ import {
 } from '../../service/api';
 
 import Card from '../../components/Card';
+import Button from '../../components/Button';
+
+import ilustration from '../../assets/images/ilustration.png';
 
 import * as S from './styles'
 
 const Dashboard = () => {
   // Busca as tarefas da api
-  const { data, refetch } = useBuscarTarefasQuery();
+  const { data, refetch, isError, isLoading, error, isSuccess } = useBuscarTarefasQuery();
 
   // Adiciona uma nova tarefa na api
   const [salvarTarefa] = useSalvarTarefaMutation();
@@ -96,7 +99,7 @@ const Dashboard = () => {
   return (
     <>
       <S.Aside>
-        <h1>Adicionar Tarefa</h1>
+        <S.Title>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar Tarefa'}</S.Title>
         <S.Form onSubmit={form.handleSubmit}>
           <input type="text" placeholder="Digite a descrição" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
@@ -110,27 +113,31 @@ const Dashboard = () => {
           <input type="text" placeholder="Digite a ordem" id="ordem" name="ordem" value={form.values.ordem} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('ordem') ? 'error' : ''} />
           {form.touched.ordem && form.errors.ordem && <S.Error>{form.errors.ordem}</S.Error>}
 
-          <S.BtnEnter type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.BtnEnter>
+          <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
 
           {editandoTarefa && (
-            <S.BtnCancel type="button" onClick={() => { form.resetForm(); setEditandoTarefa(null) }} >Cancelar</S.BtnCancel>
+            <S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }} >Cancelar</S.Button>
           )}
         </S.Form>
       </S.Aside>
       <S.Main>
-        <ul>
-          {Array.isArray(data) &&
-            data.map((tarefa) => (
+        {Array.isArray(data) && data.length > 0 ? (
+          <ul>
+            {data.map((tarefa) => (
               <li key={tarefa.id}>
                 <Card nomeTarefa={tarefa.nome} custo={tarefa.custo} dataLimite={tarefa.dataLimite} />
-                <S.BtnEdit onClick={() => handleEditar(tarefa)}>Editar</S.BtnEdit>
-                <S.BtnDelete onClick={() => handleExcluir(tarefa.id)}>Excluir</S.BtnDelete>
-                <S.Select>
-                  <option>{tarefa.ordem}</option>
-                </S.Select>
+                <Button background={'#7c8ece'} title={'Editar'} onClick={() => handleEditar(tarefa)} />
+                <Button background={'#ce7c7c'} margin={'0% 1%'} title={'Excluir'} onClick={() => handleExcluir(tarefa.id)} />
+                <S.Select><option>{tarefa.ordem}</option></S.Select>
               </li>
             ))}
-        </ul>
+          </ul>
+        ) : (
+          <S.Ilustration>
+            <img src={ilustration} alt='Ilustração' />
+            <p>Você ainda não adicionou nenhuma tarefa.</p>
+          </S.Ilustration>
+        )}
       </S.Main>
     </>
   );

@@ -6,11 +6,11 @@ export const Aside = styled.aside`
 
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+`
 
-  h1 {
-    color: #fff;
-    margin-bottom: 2vw;
-  }
+export const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 2vw;
 `
 
 export const Form = styled.form`
@@ -66,8 +66,9 @@ export const Main = styled.main`
   }
 `
 
-export const BtnEnter = styled.button`
+export const Button = styled.button`
   height: 6vh;
+  margin-bottom: 2%;
 
   color: #fff;
   cursor: pointer;
@@ -82,51 +83,6 @@ export const BtnEnter = styled.button`
     transition: all 0.5s ease;
     background: rgba(0, 0, 0, 0.2);
   }
-`
-
-export const BtnCancel = styled.button`
-  height: 6vh;
-  margin-top: 0.5vw;
-
-  color: #fff;
-  cursor: pointer;
-
-  border: 1px solid #fff;
-  border-radius: 0.2vw;
-  background: transparent;
-
-  transition: all 0.5s ease;
-
-  &:hover {
-    transition: all 0.5s ease;
-    background: rgba(0, 0, 0, 0.2);
-  }
-`
-
-export const BtnEdit = styled.button`
-  width: 5vw;
-  height: 2vw;
-  margin-right: 1%;
-
-  color: #fff;
-  cursor: pointer;
-
-  border: none;
-  background: #7c8ece;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-`
-
-export const BtnDelete = styled.button`
-  width: 5vw;
-  height: 2vw;
-  margin-right: 1%;
-
-  color: #fff;
-  cursor: pointer;
-
-  border: none;
-  background: #ce7c7c;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 `
 
 export const Select = styled.select`
@@ -145,4 +101,23 @@ export const Error = styled.p`
   color: #fff;
   font-size: 1vw;
   margin-bottom: 1vw;
+`
+
+export const Ilustration = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    color: #fff;
+    font-size: 1.3vw;
+  }
+
+  img {
+    width: 40%;
+  }
 `
