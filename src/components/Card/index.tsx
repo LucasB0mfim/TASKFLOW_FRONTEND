@@ -8,12 +8,12 @@ type Props = {
 
 const Card = ( { nomeTarefa, custo, dataLimite }: Props ) => {
   return (
-    <S.Container>
+    <S.Container isExpensive={custo}>
       <S.TagContainer>
-        <S.Tag>{nomeTarefa}</S.Tag>
-        <S.Tag>{dataLimite}</S.Tag>
+        <S.Tag isExpensive={custo}>{nomeTarefa}</S.Tag>
+        <S.Tag isExpensive={custo}>{dataLimite}</S.Tag>
       </S.TagContainer>
-      <S.Tag>R$ {custo}.00</S.Tag>
+      <S.Tag isExpensive={custo}>R$ {custo}.00</S.Tag>
     </S.Container>
   )
 }

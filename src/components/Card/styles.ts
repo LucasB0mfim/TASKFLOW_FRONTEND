@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+type Props = {
+  isExpensive: String;
+}
+
+export const Container = styled.div<Props>`
   padding: 2%;
   margin-bottom: 1%;
 
@@ -11,12 +15,12 @@ export const Container = styled.div`
   border-top-right-radius: 0.5vw;
   border-bottom-right-radius: 0.5vw;
 
-  background: #352740;
+  background: ${(props) => props.isExpensive >= '1000' ? 'linear-gradient(145deg, rgba(255, 251, 204, 1) 0%, rgba(255, 243, 128, 1) 60%)' : '#352740'};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 `
 
-export const Tag = styled.div`
-  color: #fff;
+export const Tag = styled.div<Props>`
+  color: ${(props) => props.isExpensive >= '1000' ? '#000' : '#fff'};
 `
 
 export const TagContainer = styled.div`

@@ -19,5 +19,5 @@ export const Container = styled.div`
   display: flex;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background: linear-gradient(145deg, rgba(10,25,47,1) 0%, rgba(34,13,50,1) 30%, rgba(23,23,23,1) 100%);
+  background: linear-gradient(145deg, #0a192fff 0%, rgba(34, 13, 50, 1) 30%, rgba(23,23,23,1) 100%);
 `
