@@ -3,9 +3,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export type Tarefa = {
   id: number;
   nome: string;
-  custo: number;
+  custo: string;
   dataLimite: string;
-  ordem: number;
+  ordem: string;
 }
 
 const api = createApi({

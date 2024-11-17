@@ -1,0 +1,148 @@
+import styled from "styled-components";
+
+export const Aside = styled.aside`
+  width: 30%;
+  padding: 2%;
+
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+  h1 {
+    color: #fff;
+    margin-bottom: 2vw;
+  }
+`
+
+export const Form = styled.form`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  input {
+    color: #fff;
+    height: 3vw;
+    padding-left: 2%;
+    margin-bottom: 0.5vw;
+
+    outline: none;
+    border: none;
+    border-radius: 0.2vw;
+    background: rgba(0, 0, 0, 0.2);
+
+    &.error {
+      border: 1px solid red;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+`
+
+export const Main = styled.main`
+  width: 70%;
+  padding: 6%;
+
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  /* Largura da barra de rolagem */
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Cor do controle da barra de rolagem */
+  &::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 10px;
+  }
+
+  ul {
+    li {
+      list-style: none;
+      margin-bottom: 1vw;
+    }
+  }
+`
+
+export const BtnEnter = styled.button`
+  height: 6vh;
+
+  color: #fff;
+  cursor: pointer;
+
+  border: 1px solid #fff;
+  border-radius: 0.2vw;
+  background: transparent;
+
+  transition: all 0.5s ease;
+
+  &:hover {
+    transition: all 0.5s ease;
+    background: rgba(0, 0, 0, 0.2);
+  }
+`
+
+export const BtnCancel = styled.button`
+  height: 6vh;
+  margin-top: 0.5vw;
+
+  color: #fff;
+  cursor: pointer;
+
+  border: 1px solid #fff;
+  border-radius: 0.2vw;
+  background: transparent;
+
+  transition: all 0.5s ease;
+
+  &:hover {
+    transition: all 0.5s ease;
+    background: rgba(0, 0, 0, 0.2);
+  }
+`
+
+export const BtnEdit = styled.button`
+  width: 5vw;
+  height: 2vw;
+  margin-right: 1%;
+
+  color: #fff;
+  cursor: pointer;
+
+  border: none;
+  background: #7c8ece;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+`
+
+export const BtnDelete = styled.button`
+  width: 5vw;
+  height: 2vw;
+  margin-right: 1%;
+
+  color: #fff;
+  cursor: pointer;
+
+  border: none;
+  background: #ce7c7c;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+`
+
+export const Select = styled.select`
+  width: 5vw;
+  height: 2vw;
+
+  color: #fff;
+  cursor: pointer;
+
+  border: none;
+  background: #444444;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+`
+
+export const Error = styled.p`
+  color: #fff;
+  font-size: 1vw;
+  margin-bottom: 1vw;
+`
