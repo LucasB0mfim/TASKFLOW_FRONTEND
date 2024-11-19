@@ -7,6 +7,11 @@ export type Tarefa = {
   dataLimite: string;
 }
 
+export type TarefaOrdemDTO = {
+  id: number;
+  ordem: number;
+};
+
 const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8080/api'
@@ -34,9 +39,22 @@ const api = createApi({
         url: `tarefas/${tarefaId}`,
         method: 'DELETE',
       })
-    })
+    }),
+    reordenarTarefas: builder.mutation<void, TarefaOrdemDTO[]>({
+      query: (tarefas) => ({
+        url: 'tarefas/reordenar',
+        method: 'PUT',
+        body: tarefas,
+      }),
+    }),
   })
 })
 
-export const { useBuscarTarefasQuery, useSalvarTarefaMutation, useExcluirTarefaMutation, useAtualizarTarefaMutation } = api
+export const {
+  useBuscarTarefasQuery,
+  useSalvarTarefaMutation,
+  useExcluirTarefaMutation,
+  useAtualizarTarefaMutation,
+  useReordenarTarefasMutation
+  } = api
 export default api

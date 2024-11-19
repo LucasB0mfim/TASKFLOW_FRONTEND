@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Aside = styled.aside`
+export const Sidebar = styled.aside`
   width: 30%;
   padding: 2%;
 
@@ -8,12 +8,12 @@ export const Aside = styled.aside`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 `
 
-export const Title = styled.h1`
+export const Heading = styled.h1`
   color: #fff;
   margin-bottom: 2vw;
 `
 
-export const Form = styled.form`
+export const TaskForm = styled.form`
   width: 100%;
 
   display: flex;
@@ -40,7 +40,7 @@ export const Form = styled.form`
   }
 `
 
-export const Main = styled.main`
+export const Content = styled.main`
   width: 70%;
   padding: 6%;
 
@@ -49,7 +49,7 @@ export const Main = styled.main`
 
   /* Largura da barra de rolagem */
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
   }
 
   /* Cor do controle da barra de rolagem */
@@ -85,13 +85,7 @@ export const Button = styled.button`
   }
 `
 
-export const Error = styled.p`
-  color: #fff;
-  font-size: 1vw;
-  margin-bottom: 1vw;
-`
-
-export const Ilustration = styled.div`
+export const EmptyState = styled.div`
   width: 100%;
   height: 100%;
 
@@ -108,4 +102,10 @@ export const Ilustration = styled.div`
   img {
     width: 40%;
   }
+`
+
+export const Error = styled.p`
+  color: #fff;
+  font-size: 1vw;
+  margin-bottom: 1vw;
 `

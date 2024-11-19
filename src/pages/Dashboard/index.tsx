@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import InputMask from 'react-input-mask';
 
@@ -9,32 +9,29 @@ import {
   useSalvarTarefaMutation,
   useExcluirTarefaMutation,
   useAtualizarTarefaMutation,
+  useReordenarTarefasMutation,
 } from '../../service/api';
 
 import Card from '../../components/Card';
-import Button from '../../components/Button';
 
 import ilustration from '../../assets/images/ilustration.png';
 
-import * as S from './styles'
+import * as S from './styles';
 
 const Dashboard = () => {
-  // Busca as tarefas da api
-  const { data, refetch } = useBuscarTarefasQuery();
-
-  // Adiciona uma nova tarefa na api
+  const { data: tarefas, refetch } = useBuscarTarefasQuery();
   const [salvarTarefa] = useSalvarTarefaMutation();
-
-  // Exclui uma tarefa da api
   const [excluirTarefa] = useExcluirTarefaMutation();
-
-  // Atualiza alguma tarefa da api
   const [atualizarTarefa] = useAtualizarTarefaMutation();
-
-  // Armazena o id da tarefa que o usuário deseja editar
+  const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
+  const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
 
-  // Utiliza as dependencias formik e yup para fazer a validação dos campos
+  // Atualiza as tarefas locais sempre que o backend retorna novas tarefas
+  useEffect(() => {
+    setLocalTarefas(tarefas || []);
+  }, [tarefas]);
+
   const form = useFormik({
     initialValues: {
       id: 0,
@@ -43,9 +40,9 @@ const Dashboard = () => {
       dataLimite: '',
     },
     validationSchema: yup.object({
-      nome: yup.string().min(0, 'Digite algum valor.').max(100, 'Você excedeu o limite de 100 caracteres').required('O nome é obrigatório.'),
-      custo: yup.number().min(0, 'Valor inválido').max(1000000, 'Valor inválido').required('O custo é obrigatório.'),
-      dataLimite: yup.string().required('A data limite é obrigatória.')
+      nome: yup.string().max(100, 'Você excedeu o limite de 100 caracteres.').required('O nome é obrigatório.'),
+      custo: yup.number().min(0, 'Valor inválido.').required('O custo é obrigatório.'),
+      dataLimite: yup.string().min(0, 'Digite uma data válida.').required('A data limite é obrigatória.'),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -57,8 +54,8 @@ const Dashboard = () => {
         } else {
           await salvarTarefa(values).unwrap();
         }
-        refetch(); // Atualiza a lista de tarefas
-        resetForm(); // Limpa o formulário
+        refetch();
+        resetForm();
         setEditandoTarefa(null);
       } catch (error) {
         console.error('Erro ao salvar/atualizar tarefa:', error);
@@ -67,71 +64,98 @@ const Dashboard = () => {
   });
 
   const checkInputHasError = (fieldName: string) => {
-    const isTouched = fieldName in form.touched
-    const isInvalid = fieldName in form.errors
-    const hasError = isTouched && isInvalid
-    return hasError
-  }
+    const isTouched = fieldName in form.touched;
+    const isInvalid = fieldName in form.errors;
+    return isTouched && isInvalid;
+  };
 
-  const handleEditar = (tarefa: Tarefa) => {
+  const handleEdit = (tarefa: Tarefa) => {
     setEditandoTarefa(tarefa.id);
     form.setValues({
       id: tarefa.id,
       nome: tarefa.nome,
       custo: tarefa.custo,
-      dataLimite: tarefa.dataLimite
+      dataLimite: tarefa.dataLimite,
     });
   };
 
-  const handleExcluir = async (id: number) => {
+  const handleDelete = async (id: number) => {
     try {
       await excluirTarefa(id).unwrap();
-      console.log(`Tarefa de id: ${id} excluída!`);
       refetch();
     } catch (error) {
       console.error('Erro ao excluir tarefa:', error);
     }
   };
 
+  const handleReorder = async (index: number, direction: 'up' | 'down') => {
+    const updatedTarefas = [...localTarefas];
+    const swapIndex = direction === 'up' ? index - 1 : index + 1;
+
+    // Verifica se a troca está dentro dos limites
+    if (swapIndex < 0 || swapIndex >= updatedTarefas.length) return;
+
+    // Troca os itens
+    [updatedTarefas[index], updatedTarefas[swapIndex]] = [updatedTarefas[swapIndex], updatedTarefas[index]];
+    setLocalTarefas(updatedTarefas);
+
+    // Prepara os dados com apenas `id` e `ordem` para envio
+    const ordemAtualizada = updatedTarefas.map((tarefa, ordem) => ({
+      id: tarefa.id,
+      ordem, // Índice atualizado da tarefa
+    }));
+
+    // Atualiza no backend
+    try {
+      await reordenarTarefas(ordemAtualizada).unwrap(); // Envia apenas os dados esperados
+    } catch (error) {
+      console.error('Erro ao reordenar tarefas:', error);
+    }
+  };
+
   return (
     <>
-      <S.Aside>
-        <S.Title>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar Tarefa'}</S.Title>
-        <S.Form onSubmit={form.handleSubmit}>
+      <S.Sidebar>
+        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar Tarefa'}</S.Heading>
+        <S.TaskForm onSubmit={form.handleSubmit}>
           <input type="text" placeholder="Digite o nome da tarefa" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
 
           <input type="text" placeholder="Digite o custo" id="custo" name="custo" value={form.values.custo} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('custo') ? 'error' : ''} />
           {form.touched.custo && form.errors.custo && <S.Error>{form.errors.custo}</S.Error>}
 
-          <InputMask mask='99/99/9999' type="text" placeholder="Digite a data limite" id="dataLimite" name="dataLimite" value={form.values.dataLimite} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('dataLimite') ? 'error' : ''} />
+          <InputMask mask="99/99/9999" type="text" placeholder="Digite a data limite" id="dataLimite" name="dataLimite" value={form.values.dataLimite} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('dataLimite') ? 'error' : ''} />
           {form.touched.dataLimite && form.errors.dataLimite && <S.Error>{form.errors.dataLimite}</S.Error>}
 
           <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
+          {editandoTarefa && ( <S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button> )}
+        </S.TaskForm>
+      </S.Sidebar>
 
-          {editandoTarefa && (
-            <S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }} >Cancelar</S.Button>
-          )}
-        </S.Form>
-      </S.Aside>
-      <S.Main>
-        {Array.isArray(data) && data.length > 0 ? (
+      <S.Content>
+        {localTarefas.length > 0 ? (
           <ul>
-            {data.map((tarefa) => (
+            {localTarefas.map((tarefa, index) => (
               <li key={tarefa.id}>
-                <Card nomeTarefa={tarefa.nome} custo={tarefa.custo} dataLimite={tarefa.dataLimite} />
-                <Button background={'#7c8ece'} title={'Editar'} onClick={() => handleEditar(tarefa)} />
-                <Button background={'#ce7c7c'} margin={'0% 1%'} title={'Excluir'} onClick={() => handleExcluir(tarefa.id)} />
+                <Card
+                  taskName={tarefa.nome}
+                  cost={tarefa.custo}
+                  dueDate={tarefa.dataLimite}
+                  onClickEdit={() => handleEdit(tarefa)}
+                  onClickClose={() => handleDelete(tarefa.id)}
+                  onClickUp={() => handleReorder(index, 'up')}
+                  onClickDown={() => handleReorder(index, 'down')}
+                />
               </li>
             ))}
           </ul>
         ) : (
-          <S.Ilustration>
-            <img src={ilustration} alt='Ilustração' />
+          <S.EmptyState>
+            <img src={ilustration} alt="Ilustração" />
             <p>Você ainda não adicionou nenhuma tarefa.</p>
-          </S.Ilustration>
+          </S.EmptyState>
         )}
-      </S.Main>
+      </S.Content>
     </>
   );
 };
