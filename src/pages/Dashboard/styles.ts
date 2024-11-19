@@ -1,11 +1,54 @@
 import styled from "styled-components";
 
-export const Sidebar = styled.aside`
-  width: 30%;
-  padding: 2%;
+type ContentProps = {
+  isSidebarVisible: boolean;
+}
 
-  background: rgba(255, 255, 255, 0.1);
+type ToggleButtonProps = {
+  isSidebarVisible: boolean;
+}
+
+export const Sidebar = styled.aside`
+  width: 25%;
+  padding: 2%;
+  background: rgba(0, 0, 0, 0.4);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  transition: transform 0.3s ease-in-out;
+
+  &.hidden {
+    transform: translateX(-100%);
+  }
+
+  &.visible {
+    transform: translateX(0);
+  }
+`
+
+export const ToggleButton = styled.button<ToggleButtonProps>`
+  position: absolute;
+  top: 20px;
+  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '26%' : '1%')};
+  z-index: 1000;
+
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+
+  transition: left 0.3s ease-in-out;
+
+  &:hover {
+    color: #b6c2cf;
+  }
+
+  img {
+    width: 1.5vw;
+  }
 `
 
 export const Heading = styled.h1`
@@ -28,22 +71,21 @@ export const TaskForm = styled.form`
     outline: none;
     border: none;
     border-radius: 0.2vw;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
 
     &.error {
       border: 1px solid red;
     }
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.8);
     }
   }
 `
 
-export const Content = styled.main`
-  width: 70%;
+export const Content = styled.main<ContentProps>`
+  width: ${({ isSidebarVisible }) => (isSidebarVisible ? '75%' : '100%')};
   padding: 6%;
-
   overflow-y: auto;
   scroll-behavior: smooth;
 

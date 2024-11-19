@@ -17,6 +17,7 @@ export const Container = styled.div`
   margin: 0;
 
   display: flex;
+  justify-content: end;
 
-  background: #1d2125;
+  background: #1f2c41;
 `

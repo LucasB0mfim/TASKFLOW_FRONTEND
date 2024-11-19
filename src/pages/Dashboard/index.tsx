@@ -14,6 +14,8 @@ import {
 
 import Card from '../../components/Card';
 
+import setaLeft from '../../assets/images/seta-esquerda.png';
+import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
 
 import * as S from './styles';
@@ -26,6 +28,7 @@ const Dashboard = () => {
   const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   // Atualiza as tarefas locais sempre que o backend retorna novas tarefas
   useEffect(() => {
@@ -115,8 +118,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <S.Sidebar>
-        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar Tarefa'}</S.Heading>
+      <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
+        {isSidebarVisible ? (<img src={setaLeft} />) : (<img src={setaRight} />)}
+      </S.ToggleButton>
+
+      <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
+        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
         <S.TaskForm onSubmit={form.handleSubmit}>
           <input type="text" placeholder="Digite o nome da tarefa" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
@@ -128,11 +135,11 @@ const Dashboard = () => {
           {form.touched.dataLimite && form.errors.dataLimite && <S.Error>{form.errors.dataLimite}</S.Error>}
 
           <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
-          {editandoTarefa && ( <S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button> )}
+          {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
       </S.Sidebar>
 
-      <S.Content>
+      <S.Content isSidebarVisible={isSidebarVisible} >
         {localTarefas.length > 0 ? (
           <ul>
             {localTarefas.map((tarefa, index) => (
@@ -141,7 +148,7 @@ const Dashboard = () => {
                   taskName={tarefa.nome}
                   cost={tarefa.custo}
                   dueDate={tarefa.dataLimite}
-                  onClickEdit={() => handleEdit(tarefa)}
+                  onClickEdit={() => {handleEdit(tarefa); setIsSidebarVisible(true)}}
                   onClickClose={() => handleDelete(tarefa.id)}
                   onClickUp={() => handleReorder(index, 'up')}
                   onClickDown={() => handleReorder(index, 'down')}
