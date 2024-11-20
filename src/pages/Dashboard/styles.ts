@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 type ContentProps = {
-  isSidebarVisible: boolean;
+  isSidebarVisible?: boolean;
 }
 
 type ToggleButtonProps = {
   isSidebarVisible: boolean;
 }
 
-export const Sidebar = styled.aside`
+export const Sidebar = styled.aside<ContentProps>`
   width: 25%;
   height: 100vh;
   padding: 2%;
@@ -34,7 +34,27 @@ export const Sidebar = styled.aside`
   }
 
   @media(max-width: 500px) {
-    display: none;
+    width: 80vw;
+    height: 40vh;
+    padding: 5%;
+
+    display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
+
+    border-radius: 0.3vh;
+
+    position: fixed;
+    top: 30%;
+    left: 10%;
+
+    background: #0d121b;
+
+    &.hidden {
+      transform: translateX(-120%);
+    }
+
+    &.visible {
+      transform: translateX(0);
+    }
   }
 `
 
@@ -62,7 +82,12 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
   }
 
   @media(max-width: 500px) {
-    display: none;
+    top: 31.3vh;
+    left: ${({ isSidebarVisible }) => (isSidebarVisible ? '82%' : '0%')};
+
+    img {
+      width: 1.2vh;
+    }
   }
 `
 
@@ -70,6 +95,12 @@ export const Heading = styled.h1`
   font-size: 1.8vw;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2vw;
+
+  @media(max-width: 500px) {
+    font-size: 2vh;
+    margin-bottom: 5%;
+    text-align: center;
+  }
 `
 
 export const TaskForm = styled.form`
@@ -97,6 +128,15 @@ export const TaskForm = styled.form`
     &::placeholder {
       font-size: 0.9vw;
       color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media(max-width: 500px) {
+      height: 3vh;
+      font-size: 1vh;
+
+      &::placeholder {
+        font-size: 1.1vh;
+      }
     }
   }
 `
@@ -129,6 +169,10 @@ export const GitHub = styled.div`
 
   img {
     height: 2.1vw;
+  }
+
+  @media(max-width: 500px) {
+    display: none;
   }
 `
 
@@ -179,6 +223,11 @@ export const Button = styled.button`
     transition: all 0.5s ease;
     background: rgba(0, 0, 0, 0.5);
   }
+
+  @media(max-width: 500px) {
+    height: 3vh;
+    font-size: 1vh;
+  }
 `
 
 export const EmptyState = styled.div`
@@ -198,12 +247,27 @@ export const EmptyState = styled.div`
   img {
     width: 20vw;
   }
+
+  @media(max-width: 500px) {
+    img {
+      width: 30vh;
+    }
+
+    p {
+      font-size: 1.5vh;
+    }
+  }
 `
 
 export const Error = styled.p`
   color: #fff;
   font-size: 1vw;
   margin-bottom: 1vw;
+
+  @media(max-width: 500px) {
+    font-size: 1vh;
+    margin-bottom: 4%;
+  }
 `
 
 export const Overlay = styled.div`
@@ -269,5 +333,20 @@ export const ConfirmDelet = styled.div`
       margin-left: 2%;
       background: #ff5e5e;
     }
+  }
+`
+
+export const AddTaskMobile = styled.div`
+  display: none;
+
+  @media(max-width: 500px) {
+    display: flex;
+    width: 10vw;
+    height: 5vh;
+    background: red;
+
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
   }
 `

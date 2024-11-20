@@ -184,6 +184,7 @@ const Dashboard = () => {
             <p>Você ainda não adicionou nenhuma tarefa.</p>
           </S.EmptyState>
         )}
+        <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}></S.AddTaskMobile>
       </S.Content>
     </>
   );
