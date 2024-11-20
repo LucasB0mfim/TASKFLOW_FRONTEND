@@ -29,8 +29,8 @@ const Dashboard = () => {
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [tarefaParaExcluir, setTarefaParaExcluir] = useState<Tarefa | null>(null);
 
-  // Atualiza as tarefas locais sempre que o backend retorna novas tarefas
   useEffect(() => {
     setLocalTarefas(tarefas || []);
   }, [tarefas]);
@@ -82,10 +82,12 @@ const Dashboard = () => {
     });
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDeleteConfirm = async () => {
+    if (!tarefaParaExcluir) return;
     try {
-      await excluirTarefa(id).unwrap();
+      await excluirTarefa(tarefaParaExcluir.id).unwrap();
       refetch();
+      setTarefaParaExcluir(null); // Reseta o estado após excluir
     } catch (error) {
       console.error('Erro ao excluir tarefa:', error);
     }
@@ -119,13 +121,13 @@ const Dashboard = () => {
   return (
     <>
       <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-        {isSidebarVisible ? (<img src={setaLeft} />) : (<img src={setaRight} />)}
+        {isSidebarVisible ? (<img src={setaLeft} alt='close'/>) : (<img src={setaRight} alt='open'/>)}
       </S.ToggleButton>
 
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
         <S.TaskForm onSubmit={form.handleSubmit}>
 
-        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
+          <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
           <input type="text" placeholder="Digite o nome da tarefa" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
 
@@ -141,7 +143,7 @@ const Dashboard = () => {
 
         <S.GitHub>
           <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
-          <a href="https://github.com/LucasB0mfim/TASKFLOW_BACKEND" target='_blank' style={{marginTop: '2%'}} rel="noreferrer"><img src={gitHub} alt='Código Frontend' />Ver código backend</a>
+          <a href="https://github.com/LucasB0mfim/TASKFLOW_BACKEND" target='_blank' style={{ marginTop: '2%' }} rel="noreferrer"><img src={gitHub} alt='Código Frontend' />Ver código backend</a>
         </S.GitHub>
       </S.Sidebar>
 
@@ -149,17 +151,31 @@ const Dashboard = () => {
         {localTarefas.length > 0 ? (
           <ul>
             {localTarefas.map((tarefa, index) => (
-              <li key={tarefa.id}>
-                <Card
-                  taskName={tarefa.nome}
-                  cost={tarefa.custo}
-                  dueDate={tarefa.dataLimite}
-                  onClickEdit={() => {handleEdit(tarefa); setIsSidebarVisible(true)}}
-                  onClickClose={() => handleDelete(tarefa.id)}
-                  onClickUp={() => handleReorder(index, 'up')}
-                  onClickDown={() => handleReorder(index, 'down')}
-                />
-              </li>
+              <>
+                <li key={tarefa.id}>
+                  <Card
+                    taskName={tarefa.nome}
+                    cost={tarefa.custo}
+                    dueDate={tarefa.dataLimite}
+                    onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true) }}
+                    onClickClose={() => setTarefaParaExcluir(tarefa)}
+                    onClickUp={() => handleReorder(index, 'up')}
+                    onClickDown={() => handleReorder(index, 'down')}
+                  />
+                </li>
+                {tarefaParaExcluir && (
+                  <>
+                    <S.Overlay onClick={() => setTarefaParaExcluir(null)} />
+                    <S.ConfirmDelet>
+                      <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
+                      <div>
+                        <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
+                        <button onClick={handleDeleteConfirm}>Excluir</button>
+                      </div>
+                    </S.ConfirmDelet>
+                  </>
+                )}
+              </>
             ))}
           </ul>
         ) : (

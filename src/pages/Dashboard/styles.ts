@@ -32,13 +32,17 @@ export const Sidebar = styled.aside`
   &.visible {
     transform: translateX(0);
   }
+
+  @media(max-width: 500px) {
+    display: none;
+  }
 `
 
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
   top: 20px;
   left: ${({ isSidebarVisible }) => (isSidebarVisible ? '26%' : '1%')};
-  z-index: 1000;
+  z-index: 1;
 
   background: transparent;
   border: none;
@@ -55,6 +59,10 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 
   img {
     width: 1.5vw;
+  }
+
+  @media(max-width: 500px) {
+    display: none;
   }
 `
 
@@ -147,6 +155,10 @@ export const Content = styled.main<ContentProps>`
       margin-bottom: 1vw;
     }
   }
+
+  @media(max-width: 500px) {
+    width: 100%;
+  }
 `
 
 export const Button = styled.button`
@@ -192,4 +204,70 @@ export const Error = styled.p`
   color: #fff;
   font-size: 1vw;
   margin-bottom: 1vw;
+`
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  z-index: 2;
+`
+
+export const ConfirmDelet = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 35vw;
+  height: 22vh;
+  padding: 2%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: none;
+  border-radius: 0.3vw;
+  background: linear-gradient(145deg, #001F3F 0%, #294879 50%, #001F3F 90%);
+
+  z-index: 3;
+  transform: translate(-50%, -50%);
+
+  div {
+    display: flex;
+    justify-content: end;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.2vw;
+    text-align: center;
+  }
+
+  button {
+    width: 6vw;
+    padding: 2%;
+
+    border: none;
+    border-radius: 0.3vw;
+
+    font-size: 1vw;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:first-child {
+      background: #fff;
+    }
+
+    &:last-child {
+      margin-left: 2%;
+      background: #ff5e5e;
+    }
+  }
 `
