@@ -147,9 +147,10 @@ export const TaskForm = styled.form`
     @media(max-width: 500px) {
       height: 5vh;
       font-size: 1vh;
+      padding-left: 10px;
 
       &::placeholder {
-        font-size: 1.1vh;
+        font-size: 1.3vh;
       }
     }
   }
@@ -240,7 +241,7 @@ export const Button = styled.button`
 
   @media(max-width: 500px) {
     height: 5vh;
-    font-size: 1vh;
+    font-size: 1.3vh;
   }
 `
 
@@ -365,8 +366,8 @@ export const AddTaskMobile = styled.div`
   display: none;
 
   @media(max-width: 500px) {
-    width: 10vw;
-    height: 5vh;
+    width: 14vw;
+    height: 7vh;
 
     display: flex;
     align-items: center;
