@@ -5,8 +5,7 @@ type Props = {
 }
 
 export const CardContainer = styled.div`
-  padding: 2% 0 2% 2%;
-  margin-bottom: 1%;
+  padding: 2%;
 
   display: flex;
   flex-direction: column;
@@ -19,8 +18,6 @@ export const CardContainer = styled.div`
 
 export const Header = styled.div`
   width: 100%;
-  padding: 0% 2% 0% 1%;
-  margin-bottom: 2%;
 
   display: flex;
   align-items: center;
@@ -28,15 +25,28 @@ export const Header = styled.div`
 `
 
 export const TaskTitle = styled.h2`
-  width: 92%;
+  width: 80%;
+  margin-left: 1%;
 
   color: #b6c2cf;
   font-size: 1vw;
 `
 
+export const OrderControls = styled.div`
+  width: 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    height: 1vw;
+    cursor: pointer;
+  }
+`
+
 export const ActionButtons = styled.div`
-  width: 8%;
-  margin-right: 4%;
+  width: 5%;
 
   display: flex;
   align-items: center;
@@ -50,39 +60,27 @@ export const ActionButtons = styled.div`
 
 export const Body = styled.div`
   width: 100%;
+  margin: 2% 0%;
+
   display: flex;
 `
 
 export const CostContainer = styled.div`
+  width: 100%;
   padding: 2% 2% 2% 1%;
-  width: 95%;
+
   border-radius: 0.5vw;
 
   background: #22272b;
 `
 
 export const CostText = styled.span`
+  height: auto;
+
   color: #b6c2cf;
   font-size: 1vw;
   text-align: start;
   word-wrap: break-word;
-
-  height: auto;
-`
-
-export const OrderControls = styled.div`
-  width: 5%;
-  padding: 1%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  img {
-    height: 1vw;
-    cursor: pointer;
-  }
 `
 
 export const Footer = styled.div`
@@ -108,7 +106,6 @@ export const DueDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 2% 5.8% 0 0%;
 
   color: #b6c2cf;
   font-size: 1vw;
@@ -118,7 +115,3 @@ export const DueDate = styled.div`
     margin-right: 5%;
   }
 `
-
-
-
-

@@ -17,6 +17,7 @@ import Card from '../../components/Card';
 import setaLeft from '../../assets/images/seta-esquerda.png';
 import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
+import gitHub from '../../assets/images/gitHubIcon.png';
 
 import * as S from './styles';
 
@@ -123,8 +124,9 @@ const Dashboard = () => {
       </S.ToggleButton>
 
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
-        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
         <S.TaskForm onSubmit={form.handleSubmit}>
+
+        <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
           <input type="text" placeholder="Digite o nome da tarefa" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
 
@@ -137,6 +139,11 @@ const Dashboard = () => {
           <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
           {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
+
+        <S.GitHub>
+          <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
+          <a href="https://github.com/LucasB0mfim/TASKFLOW_BACKEND" target='_blank' style={{marginTop: '2%'}} rel="noreferrer"><img src={gitHub} alt='Código Frontend' />Ver código backend</a>
+        </S.GitHub>
       </S.Sidebar>
 
       <S.Content isSidebarVisible={isSidebarVisible} >

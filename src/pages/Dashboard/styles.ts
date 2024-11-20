@@ -10,13 +10,19 @@ type ToggleButtonProps = {
 
 export const Sidebar = styled.aside`
   width: 25%;
+  height: 100vh;
   padding: 2%;
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 
   &.hidden {
@@ -36,9 +42,10 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+
   color: white;
   cursor: pointer;
+  font-size: 1.5rem;
 
   transition: left 0.3s ease-in-out;
 
@@ -52,7 +59,7 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 `
 
 export const Heading = styled.h1`
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2vw;
 `
 
@@ -71,7 +78,7 @@ export const TaskForm = styled.form`
     outline: none;
     border: none;
     border-radius: 0.2vw;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
 
     &.error {
       border: 1px solid red;
@@ -80,6 +87,37 @@ export const TaskForm = styled.form`
     &::placeholder {
       color: rgba(255, 255, 255, 0.8);
     }
+  }
+`
+
+export const GitHub = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  a {
+    height: 6vh;
+    padding: 2% 22%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1vw;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+
+    border: none;
+    border-radius: 0.2vw;
+    background: rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      transition: all 0.5s ease;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  img {
+    height: 100%;
   }
 `
 
@@ -96,7 +134,7 @@ export const Content = styled.main<ContentProps>`
 
   /* Cor do controle da barra de rolagem */
   &::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
   }
 
@@ -112,18 +150,18 @@ export const Button = styled.button`
   height: 6vh;
   margin-bottom: 2%;
 
-  color: #fff;
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
 
-  border: 1px solid #fff;
+  border: none;
   border-radius: 0.2vw;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
 
   transition: all 0.5s ease;
 
   &:hover {
     transition: all 0.5s ease;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
   }
 `
 
