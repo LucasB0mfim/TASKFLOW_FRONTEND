@@ -13,6 +13,8 @@ import {
 } from '../../service/api';
 import Card from '../../components/Card';
 
+import more from '../../assets/images/moreIcon.png';
+import close from '../../assets/images/closeIcon.png';
 import gitHub from '../../assets/images/gitHubIcon.png';
 import setaLeft from '../../assets/images/seta-esquerda.png';
 import setaRight from '../../assets/images/seta-direita.png';
@@ -127,7 +129,8 @@ const Dashboard = () => {
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
         <S.TaskForm onSubmit={form.handleSubmit}>
 
-          <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}</S.Heading>
+          <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}<img src={close} alt='Adicionar tarefa' onClick={() => setIsSidebarVisible(!isSidebarVisible)} /></S.Heading>
+
           <input type="text" placeholder="Digite o nome da tarefa" id="nome" name="nome" value={form.values.nome} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('nome') ? 'error' : ''} />
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
 
@@ -184,7 +187,7 @@ const Dashboard = () => {
             <p>Você ainda não adicionou nenhuma tarefa.</p>
           </S.EmptyState>
         )}
-        <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}></S.AddTaskMobile>
+        <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}><img src={more} alt='Adicionar tarefa' /></S.AddTaskMobile>
       </S.Content>
     </>
   );

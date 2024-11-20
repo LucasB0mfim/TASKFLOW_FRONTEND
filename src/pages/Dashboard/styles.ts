@@ -39,6 +39,7 @@ export const Sidebar = styled.aside<ContentProps>`
     padding: 5%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
+    position: relative;
 
     border-radius: 0.3vh;
 
@@ -82,8 +83,7 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
   }
 
   @media(max-width: 500px) {
-    top: 31.3vh;
-    left: ${({ isSidebarVisible }) => (isSidebarVisible ? '82%' : '0%')};
+    display: none;
 
     img {
       width: 1.2vh;
@@ -96,10 +96,24 @@ export const Heading = styled.h1`
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2vw;
 
+  img {
+    display: none;
+  }
+
   @media(max-width: 500px) {
     font-size: 2vh;
     margin-bottom: 5%;
-    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    img {
+      display: flex;
+
+      width: 2vh;
+    }
   }
 `
 
@@ -131,7 +145,7 @@ export const TaskForm = styled.form`
     }
 
     @media(max-width: 500px) {
-      height: 3vh;
+      height: 5vh;
       font-size: 1vh;
 
       &::placeholder {
@@ -225,7 +239,7 @@ export const Button = styled.button`
   }
 
   @media(max-width: 500px) {
-    height: 3vh;
+    height: 5vh;
     font-size: 1vh;
   }
 `
@@ -336,17 +350,41 @@ export const ConfirmDelet = styled.div`
   }
 `
 
+export const CloseMobile = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  img {
+    width: 30%;
+    height: 30%;
+  }
+`
+
 export const AddTaskMobile = styled.div`
   display: none;
 
   @media(max-width: 500px) {
-    display: flex;
     width: 10vw;
     height: 5vh;
-    background: red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    background: green;
 
     position: fixed;
     right: 2%;
     bottom: 2%;
+
+    border-radius: 50%;
+
+    img {
+      width: 50%;
+      height: 50%;
+    }
   }
 `
