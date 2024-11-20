@@ -59,6 +59,7 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 `
 
 export const Heading = styled.h1`
+  font-size: 1.8vw;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2vw;
 `
@@ -70,10 +71,11 @@ export const TaskForm = styled.form`
   flex-direction: column;
 
   input {
-    color: #fff;
     height: 3vw;
     padding-left: 2%;
     margin-bottom: 0.5vw;
+
+    color: #fff;
 
     outline: none;
     border: none;
@@ -85,6 +87,7 @@ export const TaskForm = styled.form`
     }
 
     &::placeholder {
+      font-size: 0.9vw;
       color: rgba(255, 255, 255, 0.8);
     }
   }
@@ -95,14 +98,14 @@ export const GitHub = styled.div`
   flex-direction: column;
 
   a {
-    height: 6vh;
-    padding: 2% 22%;
+    height: 3vw;
+    padding: 2% 24%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    font-size: 1vw;
+    font-size: 0.9vw;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
 
@@ -117,7 +120,7 @@ export const GitHub = styled.div`
   }
 
   img {
-    height: 100%;
+    height: 2.1vw;
   }
 `
 
@@ -147,10 +150,11 @@ export const Content = styled.main<ContentProps>`
 `
 
 export const Button = styled.button`
-  height: 6vh;
+  height: 3vw;
   margin-bottom: 2%;
 
   cursor: pointer;
+  font-size: 0.9vw;
   color: rgba(255, 255, 255, 0.8);
 
   border: none;
@@ -180,7 +184,7 @@ export const EmptyState = styled.div`
   }
 
   img {
-    width: 40%;
+    width: 20vw;
   }
 `
 
