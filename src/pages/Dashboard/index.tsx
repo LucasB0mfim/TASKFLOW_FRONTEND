@@ -62,11 +62,21 @@ const Dashboard = () => {
         refetch();
         resetForm();
         setEditandoTarefa(null);
+
+        if (window.innerWidth <= 500) {
+          setIsSidebarVisible(!isSidebarVisible);
+        }
+
       } catch (error) {
         console.error('Erro ao salvar/atualizar tarefa:', error);
       }
     },
   });
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 500;
+    setIsSidebarVisible(!isMobile);
+  }, []);
 
   const checkInputHasError = (fieldName: string) => {
     const isTouched = fieldName in form.touched;

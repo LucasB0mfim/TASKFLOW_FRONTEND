@@ -49,6 +49,8 @@ export const Sidebar = styled.aside<ContentProps>`
 
     background: #0d121b;
 
+    transition: none;
+
     &.hidden {
       transform: translateX(-120%);
     }
@@ -101,7 +103,7 @@ export const Heading = styled.h1`
   }
 
   @media(max-width: 500px) {
-    font-size: 2vh;
+    font-size: 2.4vh;
     margin-bottom: 2vh;
 
     display: flex;
@@ -148,7 +150,7 @@ export const TaskForm = styled.form`
 
     @media(max-width: 500px) {
       height: 5vh;
-      font-size: 1vh;
+      font-size: 1.3vh;
       padding-left: 10px;
       margin-bottom: 1vh;
 
@@ -378,18 +380,17 @@ export const AddTaskMobile = styled.div`
 
     cursor: pointer;
 
-    background: green;
+    background: rgba(0, 0, 0, 0.4);
 
     position: fixed;
     right: 2%;
     bottom: 2%;
 
-    border-radius: 50%;
+    border-radius: 1vw;
 
     img {
       width: 50%;
       height: 50%;
-      margin-left: 3px;
     }
   }
 `

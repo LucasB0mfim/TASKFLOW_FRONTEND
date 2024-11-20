@@ -30,6 +30,11 @@ export const TaskTitle = styled.h2`
 
   color: #b6c2cf;
   font-size: 1vw;
+
+  @media(max-width: 500px) {
+    width: 70%;
+    font-size: 1.3vh;
+  }
 `
 
 export const OrderControls = styled.div`
@@ -43,6 +48,13 @@ export const OrderControls = styled.div`
     height: 1vw;
     cursor: pointer;
   }
+
+  @media(max-width: 500px) {
+    width: 10%;
+
+    img {
+      height: 1.5vh;
+  }
 `
 
 export const ActionButtons = styled.div`
@@ -55,6 +67,13 @@ export const ActionButtons = styled.div`
   img {
     height: 1.2vw;
     cursor: pointer;
+  }
+
+  @media(max-width: 500px) {
+    width: 10%;
+
+    img {
+      height: 1.5vh;
   }
 `
 
@@ -81,6 +100,10 @@ export const CostText = styled.span`
   font-size: 1vw;
   text-align: start;
   word-wrap: break-word;
+
+  @media(max-width: 500px) {
+    font-size: 1.3vh;
+  }
 `
 
 export const Footer = styled.div`
@@ -113,5 +136,14 @@ export const DueDate = styled.div`
   img {
     height: 1vw;
     margin-right: 5%;
+  }
+
+  @media(max-width: 500px) {
+
+    font-size: 1.8vw;
+
+    img {
+      height: 1.8vw;
+    }
   }
 `
