@@ -124,6 +124,7 @@ export const GitHub = styled.div`
 export const Content = styled.main<ContentProps>`
   width: ${({ isSidebarVisible }) => (isSidebarVisible ? '75%' : '100%')};
   padding: 6%;
+
   overflow-y: auto;
   scroll-behavior: smooth;
 
@@ -134,8 +135,7 @@ export const Content = styled.main<ContentProps>`
 
   /* Cor do controle da barra de rolagem */
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
+    background: #b6c2cf;
   }
 
   ul {

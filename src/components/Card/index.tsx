@@ -1,10 +1,10 @@
+import clockIcon from '../../assets/images/time.png';
 import penIcon from '../../assets/images/penIcon.png';
 import closeIcon from '../../assets/images/closeIcon.png';
 import upArrow from '../../assets/images/seta-para-cima.png';
 import downArrow from '../../assets/images/seta-para-baixo.png';
-import clockIcon from '../../assets/images/time.png';
 
-import * as S from './styles'
+import * as S from './styles';
 
 type Props = {
   taskName: string;

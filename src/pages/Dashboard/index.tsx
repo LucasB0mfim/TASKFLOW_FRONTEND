@@ -11,13 +11,12 @@ import {
   useAtualizarTarefaMutation,
   useReordenarTarefasMutation,
 } from '../../service/api';
-
 import Card from '../../components/Card';
 
+import gitHub from '../../assets/images/gitHubIcon.png';
 import setaLeft from '../../assets/images/seta-esquerda.png';
 import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
-import gitHub from '../../assets/images/gitHubIcon.png';
 
 import * as S from './styles';
 

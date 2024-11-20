@@ -1,10 +1,10 @@
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import Rotas from './routes'
-import { store } from './store'
+import Rotas from './routes';
+import { store } from './store';
 
-import { Container, GlobalStyle } from './styles'
+import { Container, GlobalStyle } from './styles';
 
 function App() {
   return (
