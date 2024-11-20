@@ -102,7 +102,7 @@ export const Heading = styled.h1`
 
   @media(max-width: 500px) {
     font-size: 2vh;
-    margin-bottom: 5%;
+    margin-bottom: 2vh;
 
     display: flex;
     align-items: center;
@@ -110,9 +110,11 @@ export const Heading = styled.h1`
 
 
     img {
+      width: 2vh;
+
       display: flex;
 
-      width: 2vh;
+      cursor: pointer;
     }
   }
 `
@@ -148,6 +150,7 @@ export const TaskForm = styled.form`
       height: 5vh;
       font-size: 1vh;
       padding-left: 10px;
+      margin-bottom: 1vh;
 
       &::placeholder {
         font-size: 1.3vh;
@@ -386,6 +389,7 @@ export const AddTaskMobile = styled.div`
     img {
       width: 50%;
       height: 50%;
+      margin-left: 3px;
     }
   }
 `
