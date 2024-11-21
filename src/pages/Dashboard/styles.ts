@@ -35,7 +35,7 @@ export const Sidebar = styled.aside<ContentProps>`
 
   @media(max-width: 500px) {
     width: 80vw;
-    height: 40vh;
+    height: auto;
     padding: 5%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
@@ -154,6 +154,9 @@ export const TaskForm = styled.form`
       padding-left: 10px;
       margin-bottom: 1vh;
 
+      border-radius: 0.5vh;
+      background: rgba(255, 255, 255, 0.2);
+
       &::placeholder {
         font-size: 1.3vh;
       }
@@ -247,6 +250,10 @@ export const Button = styled.button`
   @media(max-width: 500px) {
     height: 5vh;
     font-size: 1.3vh;
+
+    border-radius: 0.5vh;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
   }
 `
 
@@ -392,5 +399,17 @@ export const AddTaskMobile = styled.div`
       width: 50%;
       height: 50%;
     }
+  }
+`
+
+export const Warning = styled.p`
+  color: #fff;
+  text-align: center;
+  font-size: 1.2vw;
+  margin-top: 10%;
+
+  @media(max-width: 500px) {
+    font-size: 2vh;
+    margin-top: 5%;
   }
 `

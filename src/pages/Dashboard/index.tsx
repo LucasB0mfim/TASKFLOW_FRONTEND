@@ -21,10 +21,11 @@ import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
 
 import * as S from './styles';
+import Loader from '../../components/Loader';
 
 const Dashboard = () => {
   const { data: tarefas, refetch } = useBuscarTarefasQuery();
-  const [salvarTarefa] = useSalvarTarefaMutation();
+  const [salvarTarefa, {isLoading}] = useSalvarTarefaMutation();
   const [excluirTarefa] = useExcluirTarefaMutation();
   const [atualizarTarefa] = useAtualizarTarefaMutation();
   const [reordenarTarefas] = useReordenarTarefasMutation();
@@ -153,6 +154,8 @@ const Dashboard = () => {
           <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
           {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
+
+        {isLoading && <div><Loader /><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
 
         <S.GitHub>
           <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
