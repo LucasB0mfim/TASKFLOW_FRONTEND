@@ -361,6 +361,21 @@ export const ConfirmDelet = styled.div`
       background: #ff5e5e;
     }
   }
+
+  @media(max-width: 500px) {
+    width: auto;
+    height: auto;
+
+    p {
+      font-size: 1.2vh;
+      margin-bottom: 10%;
+    }
+
+    button {
+      width: auto;
+      font-size: 1.2vh;
+    }
+  }
 `
 
 export const CloseMobile = styled.div`
