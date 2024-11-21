@@ -22,6 +22,10 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width: 500px) {
+    padding: 0% 2%;
+  }
 `
 
 export const TaskTitle = styled.h2`
@@ -32,8 +36,8 @@ export const TaskTitle = styled.h2`
   font-size: 1vw;
 
   @media(max-width: 500px) {
-    width: 70%;
-    font-size: 1.3vh;
+    width: 60%;
+    font-size: 2vh;
   }
 `
 
@@ -50,10 +54,10 @@ export const OrderControls = styled.div`
   }
 
   @media(max-width: 500px) {
-    width: 10%;
+    width: 12%;
 
     img {
-      height: 1.5vh;
+      height: 2vh;
   }
 `
 
@@ -70,10 +74,10 @@ export const ActionButtons = styled.div`
   }
 
   @media(max-width: 500px) {
-    width: 10%;
+    width: 12%;
 
     img {
-      height: 1.5vh;
+      height: 2vh;
   }
 `
 
@@ -82,15 +86,27 @@ export const Body = styled.div`
   margin: 2% 0%;
 
   display: flex;
+  align-items: center;
+
+  @media(max-width: 500px) {
+    margin: 0;
+    padding: 2%;
+  }
 `
 
 export const CostContainer = styled.div`
   width: 100%;
   padding: 2% 2% 2% 1%;
 
-  border-radius: 0.5vw;
+  display: flex;
+  align-items: center;
 
+  border-radius: 0.5vw;
   background: #22272b;
+
+  @media(max-width: 500px) {
+    height: 5vh;
+  }
 `
 
 export const CostText = styled.span`
@@ -102,7 +118,7 @@ export const CostText = styled.span`
   word-wrap: break-word;
 
   @media(max-width: 500px) {
-    font-size: 1.3vh;
+    font-size: 2vh;
   }
 `
 
@@ -113,6 +129,10 @@ export const Footer = styled.div`
   display: flex;
   align-items: end;
   justify-content: space-between;
+
+  @media(max-width: 500px) {
+    padding: 0% 2%;
+  }
 `
 
 export const CostTag = styled.div<Props>`
@@ -121,8 +141,12 @@ export const CostTag = styled.div<Props>`
   margin-left: 1%;
 
   border-radius: 50px;
-
   background: ${(props) => props.isExpensive >= '1000' ? 'yellow' : 'white'};
+
+  @media(max-width: 500px) {
+    width: 3vh;
+    height: 1vh;
+  }
 `
 
 export const DueDate = styled.div`
@@ -140,10 +164,10 @@ export const DueDate = styled.div`
 
   @media(max-width: 500px) {
 
-    font-size: 1.8vw;
+    font-size: 2.5vw;
 
     img {
-      height: 1.8vw;
+      height: 2.5vw;
     }
   }
 `
