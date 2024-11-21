@@ -312,8 +312,11 @@ export const Overlay = styled.div`
   height: 100vh;
 
   background: rgba(0, 0, 0, 0.7);
-
   z-index: 2;
+
+  @media(max-width: 500px) {
+    background: rgba(0, 0, 0, 0.3);
+  }
 `
 
 export const ConfirmDelet = styled.div`
@@ -342,7 +345,7 @@ export const ConfirmDelet = styled.div`
   }
 
   p {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.8);;
     font-size: 1.2vw;
     text-align: center;
   }
@@ -351,26 +354,28 @@ export const ConfirmDelet = styled.div`
     width: 6vw;
     padding: 2%;
 
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.8);;
     border-radius: 0.3vw;
 
+    color: rgba(255, 255, 255, 0.8);;
     font-size: 1vw;
     font-weight: bold;
     cursor: pointer;
 
-    &:first-child {
-      background: #fff;
-    }
+    background: rgba(0, 0, 0, 0.1);
 
     &:last-child {
       margin-left: 2%;
-      background: #ff5e5e;
     }
   }
 
   @media(max-width: 500px) {
-    width: 80%;
+    width: 90%;
     height: auto;
+
+    border-radius: 0.4vh;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+    background: #131a27;
 
     p {
       font-size: 2.5vh;
@@ -380,6 +385,7 @@ export const ConfirmDelet = styled.div`
     button {
       width: auto;
       font-size: 1.8vh;
+      border-radius: 0.4vh;
     }
   }
 `
@@ -424,7 +430,7 @@ export const AddTaskMobile = styled.div`
 `
 
 export const Warning = styled.p`
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   text-align: center;
   font-size: 1.2vw;
   margin-top: 10%;
