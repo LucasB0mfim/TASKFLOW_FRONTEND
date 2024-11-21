@@ -201,7 +201,7 @@ export const GitHub = styled.div`
 
 export const Content = styled.main<ContentProps>`
   width: ${({ isSidebarVisible }) => (isSidebarVisible ? '75%' : '100%')};
-  padding: 6%;
+  padding: 6% 0%;
 
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -217,7 +217,13 @@ export const Content = styled.main<ContentProps>`
   }
 
   ul {
+    padding: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vw;
+
     li {
+      height: 100%;
       list-style: none;
       margin-bottom: 1vw;
     }
@@ -225,8 +231,14 @@ export const Content = styled.main<ContentProps>`
 
   @media(max-width: 500px) {
     width: 100%;
+    padding: 6%;
 
     ul {
+      display: inline;
+      grid-template-columns: 1fr;
+      gap: 5vw;
+      padding: 0;
+
       li {
         margin-bottom: 3vh;
       }
@@ -334,7 +346,8 @@ export const ConfirmDelet = styled.div`
 
   border: none;
   border-radius: 0.3vw;
-  background: linear-gradient(145deg, #001F3F 0%, #294879 50%, #001F3F 90%);
+  background: #2c3b58;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 
   z-index: 3;
   transform: translate(-50%, -50%);
@@ -354,15 +367,14 @@ export const ConfirmDelet = styled.div`
     width: 6vw;
     padding: 2%;
 
-    border: 1px solid rgba(255, 255, 255, 0.8);;
     border-radius: 0.3vw;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
 
-    color: rgba(255, 255, 255, 0.8);;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 1vw;
     font-weight: bold;
     cursor: pointer;
-
-    background: rgba(0, 0, 0, 0.1);
 
     &:last-child {
       margin-left: 2%;
@@ -375,8 +387,6 @@ export const ConfirmDelet = styled.div`
     padding: 4%;
 
     border-radius: 0.4vh;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-    background: #2c3b58;
 
     p {
       font-size: 2.5vh;

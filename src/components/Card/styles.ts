@@ -5,7 +5,9 @@ type Props = {
 }
 
 export const CardContainer = styled.div`
-  padding: 2%;
+  width: 100%;
+  height: auto;
+  padding: 4%;
 
   display: flex;
   flex-direction: column;
@@ -14,6 +16,10 @@ export const CardContainer = styled.div`
 
   background: #101204;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+
+  @media(max-width: 500px) {
+    padding: 2%;
+  }
 `
 
 export const Header = styled.div`
@@ -29,7 +35,7 @@ export const Header = styled.div`
 `
 
 export const TaskTitle = styled.h2`
-  width: 80%;
+  width: 60%;
   margin-left: 1%;
 
   color: #b6c2cf;
@@ -42,7 +48,7 @@ export const TaskTitle = styled.h2`
 `
 
 export const OrderControls = styled.div`
-  width: 5%;
+  width: 12%;
 
   display: flex;
   align-items: center;
@@ -62,7 +68,7 @@ export const OrderControls = styled.div`
 `
 
 export const ActionButtons = styled.div`
-  width: 5%;
+  width: 12%;
 
   display: flex;
   align-items: center;
@@ -124,7 +130,7 @@ export const CostText = styled.span`
 
 export const Footer = styled.div`
   widht: 100%;
-  height: 100%;
+  height: auto;
 
   display: flex;
   align-items: end;
