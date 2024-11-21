@@ -225,6 +225,12 @@ export const Content = styled.main<ContentProps>`
 
   @media(max-width: 500px) {
     width: 100%;
+
+    ul {
+      li {
+        margin-bottom: 3vh;
+      }
+    }
   }
 `
 
