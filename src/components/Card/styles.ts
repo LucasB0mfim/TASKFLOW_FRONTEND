@@ -36,7 +36,7 @@ export const TaskTitle = styled.h2`
   font-size: 1vw;
 
   @media(max-width: 500px) {
-    width: 60%;
+    width: 50%;
     font-size: 2vh;
   }
 `
@@ -54,7 +54,7 @@ export const OrderControls = styled.div`
   }
 
   @media(max-width: 500px) {
-    width: 12%;
+    width: 15%;
 
     img {
       height: 2vh;
@@ -74,7 +74,7 @@ export const ActionButtons = styled.div`
   }
 
   @media(max-width: 500px) {
-    width: 12%;
+    width: 15%;
 
     img {
       height: 2vh;
