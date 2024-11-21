@@ -372,10 +372,11 @@ export const ConfirmDelet = styled.div`
   @media(max-width: 500px) {
     width: 90%;
     height: auto;
+    padding: 4%;
 
     border-radius: 0.4vh;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-    background: #131a27;
+    background: #2c3b58;
 
     p {
       font-size: 2.5vh;
