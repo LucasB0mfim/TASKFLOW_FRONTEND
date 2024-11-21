@@ -14,7 +14,7 @@ export type TarefaOrdemDTO = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api'
+    baseUrl: 'https://taskflow-backend-zs9i.onrender.com/api'
   }),
   endpoints: (builder) => ({
     buscarTarefas: builder.query<Tarefa[], void>({
