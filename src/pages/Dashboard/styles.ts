@@ -363,17 +363,17 @@ export const ConfirmDelet = styled.div`
   }
 
   @media(max-width: 500px) {
-    width: auto;
+    width: 80%;
     height: auto;
 
     p {
-      font-size: 1.2vh;
+      font-size: 2.5vh;
       margin-bottom: 10%;
     }
 
     button {
       width: auto;
-      font-size: 1.2vh;
+      font-size: 1.8vh;
     }
   }
 `
