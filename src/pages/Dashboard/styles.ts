@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../styles";
 
 type ContentProps = {
   isSidebarVisible?: boolean;
@@ -33,8 +34,12 @@ export const Sidebar = styled.aside<ContentProps>`
     transform: translateX(0);
   }
 
-  @media(max-width: 500px) {
-    width: 80vw;
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 30%;
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
+    width: 87vw;
     height: auto;
     padding: 5%;
 
@@ -45,7 +50,7 @@ export const Sidebar = styled.aside<ContentProps>`
 
     position: fixed;
     top: 30%;
-    left: 10%;
+    left: 6%;
 
     background: #0d121b;
 
@@ -63,16 +68,21 @@ export const Sidebar = styled.aside<ContentProps>`
 
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
-  top: 20px;
+  top: 1.7vw;
   left: ${({ isSidebarVisible }) => (isSidebarVisible ? '16.9%' : '2%')};
+
   z-index: 1;
 
-  background: transparent;
   border: none;
-
+  background: transparent;
   transition: left 0.3s ease-in-out;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.tablet}) {
+    top: 1.6vw;
+    left: ${({ isSidebarVisible }) => (isSidebarVisible ? '23%' : '2%')};
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `
@@ -99,7 +109,16 @@ export const BoxSetaClose = styled.div`
     transition: all 0.1s linear;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 3vw;
+    height: 5vh;
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 5vw;
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
     img {
       width: 1.2vh;
     }
@@ -128,7 +147,11 @@ export const BoxSetaOpen = styled.div`
     transition: all 0.2s ease;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 5vw;
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
     img {
       width: 1.2vh;
     }
@@ -144,7 +167,7 @@ export const Heading = styled.h1`
     display: none;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 2.4vh;
     margin-bottom: 2vh;
 
@@ -196,7 +219,7 @@ export const TaskForm = styled.form`
       -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
     }
 
-    @media(max-width: 500px) {
+    @media(max-width: ${breakpoints.mobile}) {
       height: 5vh;
       font-size: 1.3vh;
       padding-left: 10px;
@@ -218,11 +241,10 @@ export const GitHub = styled.div`
 
   a {
     height: 3vw;
-    padding: 2% 20%;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
     font-size: 0.9vw;
     text-decoration: none;
@@ -240,9 +262,10 @@ export const GitHub = styled.div`
 
   img {
     height: 2.1vw;
+    margin-right: 2%;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `
@@ -255,12 +278,10 @@ export const Content = styled.main<ContentProps>`
   overflow-y: auto;
   scroll-behavior: smooth;
 
-  /* Largura da barra de rolagem */
   &::-webkit-scrollbar {
     width: 5px;
   }
 
-  /* Cor do controle da barra de rolagem */
   &::-webkit-scrollbar-thumb {
     background: #b6c2cf;
   }
@@ -277,7 +298,17 @@ export const Content = styled.main<ContentProps>`
     }
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: 1024px) {
+    ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    width: ${({ isSidebarVisible }) => (isSidebarVisible ? '70%' : '100%')};
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
     width: 100%;
     padding: 6%;
 
@@ -313,7 +344,7 @@ export const Button = styled.button`
     background: rgb(59, 64, 68, 0.2);
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     height: 5vh;
     font-size: 1.3vh;
 
@@ -341,7 +372,7 @@ export const EmptyState = styled.div`
     width: 20vw;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     img {
       width: 30vh;
     }
@@ -357,7 +388,7 @@ export const Error = styled.p`
   font-size: 1vw;
   margin-bottom: 1vw;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 1vh;
     margin-bottom: 4%;
   }
@@ -374,7 +405,7 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.1);
   z-index: 2;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     background: rgba(0, 0, 0, 0.3);
   }
 `
@@ -402,6 +433,11 @@ export const ConfirmDelet = styled.div`
   div {
     display: flex;
     justify-content: end;
+
+    > button {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   p {
@@ -433,7 +469,7 @@ export const ConfirmDelet = styled.div`
     }
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 90%;
     height: auto;
     padding: 4%;
@@ -468,7 +504,7 @@ export const CloseMobile = styled.div`
 export const AddTaskMobile = styled.div`
   display: none;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 14vw;
     height: 7vh;
 
@@ -499,7 +535,7 @@ export const Warning = styled.p`
   font-size: 1.2vw;
   margin-top: 10%;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 2vh;
     margin-top: 5%;
   }

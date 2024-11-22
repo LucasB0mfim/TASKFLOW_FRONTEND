@@ -27,7 +27,7 @@ import Footer from '../../components/Footer';
 const Dashboard = () => {
   const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
   const [salvarTarefa, {isLoading}] = useSalvarTarefaMutation();
-  const [excluirTarefa] = useExcluirTarefaMutation();
+  const [excluirTarefa, {isLoading: excluindo}] = useExcluirTarefaMutation();
   const [atualizarTarefa , {isLoading: atualizando}] = useAtualizarTarefaMutation();
   const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
@@ -156,9 +156,9 @@ const Dashboard = () => {
           {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
 
-        {isLoading && <div><Loader /><S.Warning>Carregando...</S.Warning></div>}
-        {atualizando && <div><Loader /><S.Warning>Carregando...</S.Warning></div>}
-        {carregando && <div><Loader /><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
+        {isLoading && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
+        {atualizando && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
+        {carregando && <div><Loader size={30}/><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
 
         <S.GitHub>
           <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                       <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
                       <div>
                         <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
-                        <button onClick={handleDeleteConfirm}>Excluir</button>
+                        <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} /> : 'Excluir'}</button>
                       </div>
                     </S.ConfirmDelet>
                   </>

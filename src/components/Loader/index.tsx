@@ -2,9 +2,13 @@ import { MoonLoader } from 'react-spinners'
 
 import { Container } from './styles'
 
-const Loader = () => (
+type Props = {
+  size: number;
+}
+
+const Loader = ( { size }:Props ) => (
   <Container>
-    <MoonLoader size={30} color="#fff" />
+    <MoonLoader size={size} color="#fff" />
   </Container>
 )
 

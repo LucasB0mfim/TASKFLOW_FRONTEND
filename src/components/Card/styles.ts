@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../styles";
 
 type Props = {
   isExpensive: string;
@@ -17,7 +18,7 @@ export const CardContainer = styled.div`
   background: rgb(16, 18, 4, 0.9);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     padding: 3% 2%;
   }
 `
@@ -29,7 +30,7 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     padding: 0% 2%;
   }
 `
@@ -41,7 +42,7 @@ export const TaskTitle = styled.h2`
   color: #b6c2cf;
   font-size: 1vw;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 50%;
     font-size: 2vh;
   }
@@ -59,7 +60,7 @@ export const OrderControls = styled.div`
     cursor: pointer;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 15%;
 
     img {
@@ -79,7 +80,7 @@ export const ActionButtons = styled.div`
     cursor: pointer;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 15%;
 
     img {
@@ -94,7 +95,7 @@ export const Body = styled.div`
   display: flex;
   align-items: center;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     margin: 0;
     padding: 2%;
   }
@@ -102,7 +103,7 @@ export const Body = styled.div`
 
 export const CostContainer = styled.div`
   width: 100%;
-  height: 6vh;
+  height: 3vw;
   padding: 2%;
 
   display: flex;
@@ -111,7 +112,7 @@ export const CostContainer = styled.div`
   border-radius: 0.5vw;
   background: #22272b;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     height: 5vh;
   }
 `
@@ -124,7 +125,7 @@ export const CostText = styled.span`
   text-align: start;
   word-wrap: break-word;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 1.9vh;
   }
 `
@@ -137,7 +138,7 @@ export const Footer = styled.div`
   align-items: end;
   justify-content: space-between;
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     padding: 0% 2%;
   }
 `
@@ -150,7 +151,7 @@ export const CostTag = styled.div<Props>`
   border-radius: 50px;
   background: ${(props) => props.isExpensive >= '1000' ? 'yellow' : 'white'};
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     width: 5vh;
     height: 1.8vh;
   }
@@ -169,7 +170,7 @@ export const DueDate = styled.div`
     margin-right: 5%;
   }
 
-  @media(max-width: 500px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 2vh;
 
     img {

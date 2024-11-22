@@ -20,3 +20,8 @@ export const Container = styled.div`
 
   background: #1f2c41;
 `
+
+export const breakpoints = {
+  mobile: '768px',
+  tablet: '1024px'
+}
