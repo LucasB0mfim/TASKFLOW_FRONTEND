@@ -11,7 +11,7 @@ type ToggleButtonProps = {
 export const Sidebar = styled.aside<ContentProps>`
   width: 22%;
   height: 100vh;
-  padding: 2%;
+  padding: 2.3% 2%;
 
   display: flex;
   flex-direction: column;
@@ -64,29 +64,71 @@ export const Sidebar = styled.aside<ContentProps>`
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
   top: 20px;
-  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '23.5%' : '2%')};
+  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '16.9%' : '2%')};
   z-index: 1;
 
   background: transparent;
   border: none;
 
-  color: white;
-  cursor: pointer;
-  font-size: 1.5rem;
-
   transition: left 0.3s ease-in-out;
-
-  &:hover {
-    color: #b6c2cf;
-  }
-
-  img {
-    width: 1.5vw;
-  }
 
   @media(max-width: 500px) {
     display: none;
+  }
+`
 
+export const BoxSetaClose = styled.div`
+  width: 3vw;
+  height: 6vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  border-radius: 0.3vw;
+  background: transparent;
+  transition: all 0.1s linear;
+
+  img {
+    width: 1.3vw;
+  }
+
+  &:hover {
+    background: rgb(59, 64, 68, 0.7);
+    transition: all 0.1s linear;
+  }
+
+  @media(max-width: 500px) {
+    img {
+      width: 1.2vh;
+    }
+  }
+`
+
+export const BoxSetaOpen = styled.div`
+  width: 3vw;
+  height: 6vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  border-radius: 0.3vw;
+  transition: all 0.2s ease;
+  background: rgb(23, 28, 33, 0.8);
+
+  img {
+    width: 1.3vw;
+  }
+
+  &:hover {
+    background: rgb(23, 28, 33, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  @media(max-width: 500px) {
     img {
       width: 1.2vh;
     }
@@ -96,7 +138,7 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 export const Heading = styled.h1`
   font-size: 1.7vw;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 3.7vw;
+  margin-bottom: 3.4vw;
 
   img {
     display: none;
@@ -137,7 +179,7 @@ export const TaskForm = styled.form`
     outline: none;
     border: none;
     border-radius: 0.2vw;
-    background: rgb(59, 64, 68, 0.5);
+    background: rgba(59, 64, 68, 0.5);
 
     &.error {
       border: 1px solid red;
@@ -146,6 +188,12 @@ export const TaskForm = styled.form`
     &::placeholder {
       font-size: 0.9vw;
       color: rgba(255, 255, 255, 0.8);
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0px 0px 0px 1000px #2a2f35 inset !important;
+      box-shadow: 0px 0px 0px 1000px #2a2f35 inset !important;
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
     }
 
     @media(max-width: 500px) {
@@ -201,6 +249,7 @@ export const GitHub = styled.div`
 
 export const Content = styled.main<ContentProps>`
   width: ${({ isSidebarVisible }) => (isSidebarVisible ? '78%' : '100%')};
+  height: 95vh;
   padding: 6% 0%;
 
   overflow-y: auto;
@@ -225,7 +274,6 @@ export const Content = styled.main<ContentProps>`
     li {
       height: 100%;
       list-style: none;
-      margin-bottom: 1vw;
     }
   }
 

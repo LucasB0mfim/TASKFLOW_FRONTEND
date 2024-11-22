@@ -1,8 +1,8 @@
 import clockIcon from '../../assets/images/time.png';
 import penIcon from '../../assets/images/penIcon.png';
 import closeIcon from '../../assets/images/closeIcon.png';
-import upArrow from '../../assets/images/seta-para-cima.png';
-import downArrow from '../../assets/images/seta-para-baixo.png';
+import LeftArrow from '../../assets/images/seta-esquerda.png';
+import rightArrow from '../../assets/images/seta-direita.png';
 
 import * as S from './styles';
 
@@ -12,19 +12,19 @@ type Props = {
   dueDate: string;
   onClickEdit?: () => void;
   onClickClose?: () => void;
-  onClickUp?: () => void;
-  onClickDown?: () => void;
+  onClickLeft?: () => void;
+  onClickRight?: () => void;
 }
 
-const Card = ({ taskName, cost, dueDate, onClickEdit, onClickClose, onClickUp, onClickDown }: Props) => {
+const Card = ({ taskName, cost, dueDate, onClickEdit, onClickClose, onClickLeft, onClickRight }: Props) => {
   return (
     <S.CardContainer>
 
       <S.Header>
         <S.TaskTitle>{taskName}</S.TaskTitle>
         <S.OrderControls>
-          <img src={upArrow} alt="edit task" onClick={onClickUp} />
-          <img src={downArrow} alt="close task" onClick={onClickDown} />
+          <img src={LeftArrow} alt="edit task" onClick={onClickLeft} />
+          <img src={rightArrow} alt="close task" onClick={onClickRight} />
         </S.OrderControls>
         <S.ActionButtons>
           <img src={penIcon} alt="edit task" onClick={onClickEdit} />

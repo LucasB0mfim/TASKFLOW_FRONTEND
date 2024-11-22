@@ -22,12 +22,13 @@ import ilustration from '../../assets/images/ilustration.png';
 
 import * as S from './styles';
 import Loader from '../../components/Loader';
+import Footer from '../../components/Footer';
 
 const Dashboard = () => {
-  const { data: tarefas, refetch } = useBuscarTarefasQuery();
+  const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
   const [salvarTarefa, {isLoading}] = useSalvarTarefaMutation();
   const [excluirTarefa] = useExcluirTarefaMutation();
-  const [atualizarTarefa] = useAtualizarTarefaMutation();
+  const [atualizarTarefa , {isLoading: atualizando}] = useAtualizarTarefaMutation();
   const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
@@ -106,9 +107,9 @@ const Dashboard = () => {
     }
   };
 
-  const handleReorder = async (index: number, direction: 'up' | 'down') => {
+  const handleReorder = async (index: number, direction: 'left' | 'right') => {
     const updatedTarefas = [...localTarefas];
-    const swapIndex = direction === 'up' ? index - 1 : index + 1;
+    const swapIndex = direction === 'left' ? index - 1 : index + 1;
 
     // Verifica se a troca está dentro dos limites
     if (swapIndex < 0 || swapIndex >= updatedTarefas.length) return;
@@ -134,7 +135,7 @@ const Dashboard = () => {
   return (
     <>
       <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-        {isSidebarVisible ? (<img src={setaLeft} alt='close'/>) : (<img src={setaRight} alt='open'/>)}
+        {isSidebarVisible ? (<S.BoxSetaClose><img src={setaLeft} alt='close'/></S.BoxSetaClose>) : (<S.BoxSetaOpen><img src={setaRight} alt='open'/></S.BoxSetaOpen>)}
       </S.ToggleButton>
 
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
@@ -155,7 +156,9 @@ const Dashboard = () => {
           {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
 
-        {isLoading && <div><Loader /><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
+        {isLoading && <div><Loader /><S.Warning>Carregando...</S.Warning></div>}
+        {atualizando && <div><Loader /><S.Warning>Carregando...</S.Warning></div>}
+        {carregando && <div><Loader /><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
 
         <S.GitHub>
           <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
@@ -175,8 +178,8 @@ const Dashboard = () => {
                     dueDate={tarefa.dataLimite}
                     onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true) }}
                     onClickClose={() => setTarefaParaExcluir(tarefa)}
-                    onClickUp={() => handleReorder(index, 'up')}
-                    onClickDown={() => handleReorder(index, 'down')}
+                    onClickLeft={() => handleReorder(index, 'left')}
+                    onClickRight={() => handleReorder(index, 'right')}
                   />
                 </li>
                 {tarefaParaExcluir && (
@@ -201,7 +204,9 @@ const Dashboard = () => {
           </S.EmptyState>
         )}
         <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}><img src={more} alt='Adicionar tarefa' /></S.AddTaskMobile>
+        <Footer />
       </S.Content>
+
     </>
   );
 };
