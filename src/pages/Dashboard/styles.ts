@@ -9,7 +9,7 @@ type ToggleButtonProps = {
 }
 
 export const Sidebar = styled.aside<ContentProps>`
-  width: 25%;
+  width: 22%;
   height: 100vh;
   padding: 2%;
 
@@ -21,7 +21,7 @@ export const Sidebar = styled.aside<ContentProps>`
   left: 0;
   top: 0;
 
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(23, 28, 33, 0.8);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 
@@ -64,7 +64,7 @@ export const Sidebar = styled.aside<ContentProps>`
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
   top: 20px;
-  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '26%' : '1%')};
+  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '23.5%' : '2%')};
   z-index: 1;
 
   background: transparent;
@@ -94,9 +94,9 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 `
 
 export const Heading = styled.h1`
-  font-size: 1.8vw;
+  font-size: 1.7vw;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2vw;
+  margin-bottom: 3.7vw;
 
   img {
     display: none;
@@ -129,7 +129,7 @@ export const TaskForm = styled.form`
 
   input {
     height: 3vw;
-    padding-left: 2%;
+    padding-left: 4%;
     margin-bottom: 0.5vw;
 
     color: #fff;
@@ -137,7 +137,7 @@ export const TaskForm = styled.form`
     outline: none;
     border: none;
     border-radius: 0.2vw;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(59, 64, 68, 0.5);
 
     &.error {
       border: 1px solid red;
@@ -170,7 +170,7 @@ export const GitHub = styled.div`
 
   a {
     height: 3vw;
-    padding: 2% 24%;
+    padding: 2% 20%;
 
     display: flex;
     align-items: center;
@@ -182,11 +182,11 @@ export const GitHub = styled.div`
 
     border: none;
     border-radius: 0.2vw;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(59, 64, 68, 0.5);
 
     &:hover {
       transition: all 0.5s ease;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgb(59, 64, 68, 0.2);
     }
   }
 
@@ -200,7 +200,7 @@ export const GitHub = styled.div`
 `
 
 export const Content = styled.main<ContentProps>`
-  width: ${({ isSidebarVisible }) => (isSidebarVisible ? '75%' : '100%')};
+  width: ${({ isSidebarVisible }) => (isSidebarVisible ? '78%' : '100%')};
   padding: 6% 0%;
 
   overflow-y: auto;
@@ -256,13 +256,13 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 0.2vw;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgb(59, 64, 68, 0.5);
 
   transition: all 0.5s ease;
 
   &:hover {
     transition: all 0.5s ease;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(59, 64, 68, 0.2);
   }
 
   @media(max-width: 500px) {

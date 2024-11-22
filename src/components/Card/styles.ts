@@ -35,7 +35,7 @@ export const Header = styled.div`
 `
 
 export const TaskTitle = styled.h2`
-  width: 60%;
+  width: 50%;
   margin-left: 1%;
 
   color: #b6c2cf;
@@ -48,7 +48,7 @@ export const TaskTitle = styled.h2`
 `
 
 export const OrderControls = styled.div`
-  width: 12%;
+  width: 15%;
 
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ export const OrderControls = styled.div`
 `
 
 export const ActionButtons = styled.div`
-  width: 12%;
+  width: 15%;
 
   display: flex;
   align-items: center;
@@ -102,7 +102,8 @@ export const Body = styled.div`
 
 export const CostContainer = styled.div`
   width: 100%;
-  padding: 2% 2% 2% 1%;
+  height: 6vh;
+  padding: 2%;
 
   display: flex;
   align-items: center;
