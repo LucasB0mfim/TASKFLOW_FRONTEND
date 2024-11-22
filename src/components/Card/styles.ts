@@ -18,7 +18,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
   @media(max-width: 500px) {
-    padding: 2%;
+    padding: 3% 2%;
   }
 `
 
@@ -151,7 +151,7 @@ export const CostTag = styled.div<Props>`
   background: ${(props) => props.isExpensive >= '1000' ? 'yellow' : 'white'};
 
   @media(max-width: 500px) {
-    width: 6vh;
+    width: 5vh;
     height: 1.8vh;
   }
 `
