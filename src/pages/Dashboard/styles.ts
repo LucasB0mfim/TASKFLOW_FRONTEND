@@ -21,6 +21,7 @@ export const Sidebar = styled.aside<ContentProps>`
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 3;
 
   background: rgb(23, 28, 33, 0.8);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -41,7 +42,7 @@ export const Sidebar = styled.aside<ContentProps>`
   @media(max-width: ${breakpoints.mobile}) {
     width: 87vw;
     height: auto;
-    padding: 5%;
+    padding: 10% 5%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
     position: relative;
@@ -310,7 +311,9 @@ export const Content = styled.main<ContentProps>`
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 100%;
+    height: auto;
     padding: 6%;
+    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 0.3)' : '')};
 
     ul {
       display: inline;
@@ -512,13 +515,15 @@ export const AddTaskMobile = styled.div`
     align-items: center;
     justify-content: center;
 
+    z-index: 3;
+
     cursor: pointer;
 
     background: rgba(0, 0, 0, 0.4);
 
     position: fixed;
-    right: 2%;
-    bottom: 2%;
+    right: 7%;
+    bottom: 4%;
 
     border-radius: 1vw;
 
