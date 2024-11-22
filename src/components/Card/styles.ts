@@ -125,7 +125,7 @@ export const CostText = styled.span`
   word-wrap: break-word;
 
   @media(max-width: 500px) {
-    font-size: 2vh;
+    font-size: 1.9vh;
   }
 `
 
@@ -151,8 +151,8 @@ export const CostTag = styled.div<Props>`
   background: ${(props) => props.isExpensive >= '1000' ? 'yellow' : 'white'};
 
   @media(max-width: 500px) {
-    width: 3vh;
-    height: 1vh;
+    width: 6vh;
+    height: 1.8vh;
   }
 `
 
@@ -170,11 +170,11 @@ export const DueDate = styled.div`
   }
 
   @media(max-width: 500px) {
-
-    font-size: 2.5vw;
+    font-size: 2vh;
 
     img {
-      height: 2.5vw;
+      width: 4vw;
+      height: 2.3vh;
     }
   }
 `
