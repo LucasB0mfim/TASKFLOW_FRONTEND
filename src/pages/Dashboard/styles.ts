@@ -371,7 +371,7 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.1);
   z-index: 2;
 
   @media(max-width: 500px) {
@@ -395,7 +395,6 @@ export const ConfirmDelet = styled.div`
   border: none;
   border-radius: 0.3vw;
   background: #2c3b58;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 
   z-index: 3;
   transform: translate(-50%, -50%);
@@ -427,6 +426,11 @@ export const ConfirmDelet = styled.div`
     &:last-child {
       margin-left: 2%;
     }
+
+    &:hover {
+      transition: all 0.2s ease;
+      background: rgba(0, 0, 0, 0.3);
+    }
   }
 
   @media(max-width: 500px) {
@@ -435,6 +439,7 @@ export const ConfirmDelet = styled.div`
     padding: 4%;
 
     border-radius: 0.4vh;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 
     p {
       font-size: 2.5vh;
