@@ -14,7 +14,7 @@ export const CardContainer = styled.div`
 
   border-radius: 0.5vw;
 
-  background: #101204;
+  background: rgb(16, 18, 4, 0.9);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
   @media(max-width: 500px) {
@@ -89,7 +89,7 @@ export const ActionButtons = styled.div`
 
 export const Body = styled.div`
   width: 100%;
-  margin: 2% 0%;
+  margin: 3% 0%;
 
   display: flex;
   align-items: center;
