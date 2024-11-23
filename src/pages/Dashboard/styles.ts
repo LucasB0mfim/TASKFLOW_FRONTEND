@@ -313,7 +313,8 @@ export const Content = styled.main<ContentProps>`
     width: 100%;
     height: auto;
     padding: 6%;
-    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 0.4)' : '')};
+    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 1)' : '')};
+    opacity: ${({ isSidebarVisible }) => (isSidebarVisible ? '0.2' : '')};
 
     ul {
       display: inline;
