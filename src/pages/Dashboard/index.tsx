@@ -1,8 +1,8 @@
+import React from 'react';
 import * as yup from 'yup';
-import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import InputMask from 'react-input-mask';
-
+import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 
 import {
@@ -14,6 +14,8 @@ import {
   useReordenarTarefasMutation,
 } from '../../service/api';
 import Card from '../../components/Card';
+import Loader from '../../components/Loader';
+import Footer from '../../components/Footer';
 
 import more from '../../assets/images/moreIcon.png';
 import close from '../../assets/images/closeIcon.png';
@@ -23,8 +25,6 @@ import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
 
 import * as S from './styles';
-import Loader from '../../components/Loader';
-import Footer from '../../components/Footer';
 
 const Dashboard = () => {
   const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
@@ -85,21 +85,17 @@ const Dashboard = () => {
       return;
     }
 
-    // Usar `localTarefas` que é o estado local das tarefas reordenadas
     const items = reorder(localTarefas, result.source.index, result.destination.index);
 
-    // Atualizar o estado local com a nova ordem
     setLocalTarefas(items);
 
-    // Preparar os dados para o backend
     const ordemAtualizada = items.map((tarefa, ordem) => ({
       id: tarefa.id,
-      ordem, // Novo índice da tarefa
+      ordem,
     }));
 
-    // Enviar a ordem atualizada para o backend
     try {
-      reordenarTarefas(ordemAtualizada).unwrap(); // Atualiza a ordem no backend
+      reordenarTarefas(ordemAtualizada).unwrap();
     } catch (error) {
       console.error('Erro ao reordenar tarefas:', error);
     }
@@ -110,7 +106,7 @@ const Dashboard = () => {
   }, [tarefas]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 500;
+    const isMobile = window.innerWidth <= 768;
     setIsSidebarVisible(!isMobile);
   }, []);
 
@@ -135,7 +131,7 @@ const Dashboard = () => {
     try {
       await excluirTarefa(tarefaParaExcluir.id).unwrap();
       refetch();
-      setTarefaParaExcluir(null); // Reseta o estado após excluir
+      setTarefaParaExcluir(null);
     } catch (error) {
       console.error('Erro ao excluir tarefa:', error);
     }
@@ -145,34 +141,30 @@ const Dashboard = () => {
     const updatedTarefas = [...localTarefas];
     const swapIndex = direction === 'left' ? index - 1 : index + 1;
 
-    // Verifica se a troca está dentro dos limites
     if (swapIndex < 0 || swapIndex >= updatedTarefas.length) return;
 
-    // Troca os itens
     [updatedTarefas[index], updatedTarefas[swapIndex]] = [updatedTarefas[swapIndex], updatedTarefas[index]];
     setLocalTarefas(updatedTarefas);
 
-    // Prepara os dados com apenas `id` e `ordem` para envio
     const ordemAtualizada = updatedTarefas.map((tarefa, ordem) => ({
       id: tarefa.id,
-      ordem, // Índice atualizado da tarefa
+      ordem,
     }));
 
-    // Atualiza no backend
     try {
-      await reordenarTarefas(ordemAtualizada).unwrap(); // Envia apenas os dados esperados
+      await reordenarTarefas(ordemAtualizada).unwrap();
     } catch (error) {
       console.error('Erro ao reordenar tarefas:', error);
     }
   };
 
   return (
-    <>
+    <React.Fragment>
       <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
         {isSidebarVisible ? (<S.BoxSetaClose><img src={setaLeft} alt='close' /></S.BoxSetaClose>) : (<S.BoxSetaOpen><img src={setaRight} alt='open' /></S.BoxSetaOpen>)}
       </S.ToggleButton>
 
-      <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
+      <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'}>
         <S.TaskForm onSubmit={form.handleSubmit}>
 
           <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}<img src={close} alt='Adicionar tarefa' onClick={() => setIsSidebarVisible(!isSidebarVisible)} /></S.Heading>
@@ -207,7 +199,7 @@ const Dashboard = () => {
               {(provided) => (
                 <ul ref={provided.innerRef} {...provided.droppableProps}>
                   {localTarefas.map((tarefa, index) => (
-                    <>
+                    <React.Fragment key={tarefa.id}>
                       <li key={tarefa.id}>
                         <Card
                           taskId={tarefa.id.toString()}
@@ -233,7 +225,7 @@ const Dashboard = () => {
                           </S.ConfirmDelet>
                         </>
                       )}
-                    </>
+                    </React.Fragment>
                   ))}
                   {provided.placeholder}
                 </ul>
@@ -249,7 +241,7 @@ const Dashboard = () => {
         <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}><img src={more} alt='Adicionar tarefa' /></S.AddTaskMobile>
         <Footer />
       </S.Content>
-    </>
+    </React.Fragment>
   );
 };
 

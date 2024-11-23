@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles";
 
-type Props = {
-  isExpensive: string;
-}
+import { breakpoints } from "../../styles";
 
 export const CardContainer = styled.div`
   width: 100%;
   height: auto;
-  padding: 4%;
+  padding: 1.2vw;
 
   display: flex;
   flex-direction: column;
@@ -17,6 +14,7 @@ export const CardContainer = styled.div`
 
   background: rgb(16, 18, 4, 0.9);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+
 
   @media(max-width: ${breakpoints.mobile}) {
     padding: 3% 2%;
@@ -143,13 +141,11 @@ export const Footer = styled.div`
   }
 `
 
-export const CostTag = styled.div<Props>`
+export const CostTag = styled.div`
   width: 3vw;
   height: 1vw;
   margin-left: 1%;
-
   border-radius: 50px;
-  background: ${(props) => props.isExpensive >= '1000' ? 'yellow' : 'white'};
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 5vh;
@@ -175,7 +171,7 @@ export const DueDate = styled.div`
 
     img {
       width: 4vw;
-      height: 2.3vh;
+      height: 2vh;
     }
   }
 `

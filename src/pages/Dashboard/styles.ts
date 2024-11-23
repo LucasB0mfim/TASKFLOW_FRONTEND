@@ -294,7 +294,7 @@ export const Content = styled.main<ContentProps>`
     gap: 2vw;
 
     li {
-      height: 100%;
+      height: auto;
       list-style: none;
     }
   }
