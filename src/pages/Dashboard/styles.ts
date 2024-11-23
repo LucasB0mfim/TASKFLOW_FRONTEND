@@ -47,7 +47,8 @@ export const Sidebar = styled.aside<ContentProps>`
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
     position: relative;
 
-    border-radius: 0.3vh;
+    border-radius: 0.5vh;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
 
     position: fixed;
     top: 30%;
@@ -313,8 +314,7 @@ export const Content = styled.main<ContentProps>`
     width: 100%;
     height: auto;
     padding: 6%;
-    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 1)' : '')};
-    opacity: ${({ isSidebarVisible }) => (isSidebarVisible ? '0.2' : '')};
+    opacity: ${({ isSidebarVisible }) => (isSidebarVisible ? '0' : '')};
 
     ul {
       display: inline;
