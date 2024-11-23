@@ -42,7 +42,7 @@ export const Sidebar = styled.aside<ContentProps>`
   @media(max-width: ${breakpoints.mobile}) {
     width: 88vw;
     height: auto;
-    padding: 10% 3.5%;
+    padding: 8%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
     position: relative;
@@ -171,7 +171,7 @@ export const Heading = styled.h1`
 
   @media(max-width: ${breakpoints.mobile}) {
     font-size: 2.4vh;
-    margin-bottom: 2vh;
+    margin-bottom: 8%;
 
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@ export const Heading = styled.h1`
 
 
     img {
-      width: 2vh;
+      width: 2.5vh;
 
       display: flex;
 
@@ -231,7 +231,7 @@ export const TaskForm = styled.form`
       background: rgba(255, 255, 255, 0.2);
 
       &::placeholder {
-        font-size: 1.3vh;
+        font-size: 1.5vh;
       }
     }
   }
@@ -350,7 +350,7 @@ export const Button = styled.button`
 
   @media(max-width: ${breakpoints.mobile}) {
     height: 5vh;
-    font-size: 1.3vh;
+    font-size: 1.55vh;
 
     border-radius: 0.5vh;
     border: 2px solid rgba(255, 255, 255, 0.2);
