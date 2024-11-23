@@ -195,7 +195,7 @@ const Dashboard = () => {
       <S.Content isSidebarVisible={isSidebarVisible}>
         {localTarefas.length > 0 ? (
           <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="tasks" type="list" direction="horizontal">
+            <Droppable droppableId="tasks" type="list" direction="vertical">
               {(provided) => (
                 <ul ref={provided.innerRef} {...provided.droppableProps}>
                   {localTarefas.map((tarefa, index) => (

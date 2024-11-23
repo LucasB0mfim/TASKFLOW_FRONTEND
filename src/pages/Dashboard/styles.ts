@@ -40,7 +40,7 @@ export const Sidebar = styled.aside<ContentProps>`
   }
 
   @media(max-width: ${breakpoints.mobile}) {
-    width: 87vw;
+    width: 88vw;
     height: auto;
     padding: 10% 5%;
 
@@ -53,7 +53,7 @@ export const Sidebar = styled.aside<ContentProps>`
     top: 30%;
     left: 6%;
 
-    background: #0d121b;
+    background: #2c3b58;
 
     transition: none;
 
@@ -313,7 +313,7 @@ export const Content = styled.main<ContentProps>`
     width: 100%;
     height: auto;
     padding: 6%;
-    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 0.3)' : '')};
+    background: ${({ isSidebarVisible }) => (isSidebarVisible ? 'rgba(0, 0, 0, 0.4)' : '')};
 
     ul {
       display: inline;
@@ -409,7 +409,7 @@ export const Overlay = styled.div`
   z-index: 2;
 
   @media(max-width: ${breakpoints.mobile}) {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
   }
 `
 

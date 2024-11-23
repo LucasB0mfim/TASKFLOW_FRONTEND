@@ -18,6 +18,7 @@ export const CardContainer = styled.div`
 
   @media(max-width: ${breakpoints.mobile}) {
     padding: 3% 2%;
+    border-radius: 0.5vh;
   }
 `
 
@@ -112,6 +113,7 @@ export const CostContainer = styled.div`
 
   @media(max-width: ${breakpoints.mobile}) {
     height: 5vh;
+    border-radius: 0.5vh;
   }
 `
 
