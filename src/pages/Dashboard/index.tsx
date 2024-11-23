@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import InputMask from 'react-input-mask';
 
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+
 import {
   Tarefa,
   useBuscarTarefasQuery,
@@ -26,18 +28,14 @@ import Footer from '../../components/Footer';
 
 const Dashboard = () => {
   const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
-  const [salvarTarefa, {isLoading}] = useSalvarTarefaMutation();
-  const [excluirTarefa, {isLoading: excluindo}] = useExcluirTarefaMutation();
-  const [atualizarTarefa , {isLoading: atualizando}] = useAtualizarTarefaMutation();
+  const [salvarTarefa, { isLoading }] = useSalvarTarefaMutation();
+  const [excluirTarefa, { isLoading: excluindo }] = useExcluirTarefaMutation();
+  const [atualizarTarefa, { isLoading: atualizando }] = useAtualizarTarefaMutation();
   const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [tarefaParaExcluir, setTarefaParaExcluir] = useState<Tarefa | null>(null);
-
-  useEffect(() => {
-    setLocalTarefas(tarefas || []);
-  }, [tarefas]);
 
   const form = useFormik({
     initialValues: {
@@ -74,6 +72,42 @@ const Dashboard = () => {
       }
     },
   });
+
+  function reorder<T>(list: T[], startIndex: number, endIndex: number) {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  }
+
+  function onDragEnd(result: any) {
+    if (!result.destination) {
+      return;
+    }
+
+    // Usar `localTarefas` que é o estado local das tarefas reordenadas
+    const items = reorder(localTarefas, result.source.index, result.destination.index);
+
+    // Atualizar o estado local com a nova ordem
+    setLocalTarefas(items);
+
+    // Preparar os dados para o backend
+    const ordemAtualizada = items.map((tarefa, ordem) => ({
+      id: tarefa.id,
+      ordem, // Novo índice da tarefa
+    }));
+
+    // Enviar a ordem atualizada para o backend
+    try {
+      reordenarTarefas(ordemAtualizada).unwrap(); // Atualiza a ordem no backend
+    } catch (error) {
+      console.error('Erro ao reordenar tarefas:', error);
+    }
+  }
+
+  useEffect(() => {
+    setLocalTarefas(tarefas || []);
+  }, [tarefas]);
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 500;
@@ -135,7 +169,7 @@ const Dashboard = () => {
   return (
     <>
       <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-        {isSidebarVisible ? (<S.BoxSetaClose><img src={setaLeft} alt='close'/></S.BoxSetaClose>) : (<S.BoxSetaOpen><img src={setaRight} alt='open'/></S.BoxSetaOpen>)}
+        {isSidebarVisible ? (<S.BoxSetaClose><img src={setaLeft} alt='close' /></S.BoxSetaClose>) : (<S.BoxSetaOpen><img src={setaRight} alt='open' /></S.BoxSetaOpen>)}
       </S.ToggleButton>
 
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'} >
@@ -166,37 +200,46 @@ const Dashboard = () => {
         </S.GitHub>
       </S.Sidebar>
 
-      <S.Content isSidebarVisible={isSidebarVisible} >
+      <S.Content isSidebarVisible={isSidebarVisible}>
         {localTarefas.length > 0 ? (
-          <ul>
-            {localTarefas.map((tarefa, index) => (
-              <>
-                <li key={tarefa.id}>
-                  <Card
-                    taskName={tarefa.nome}
-                    cost={tarefa.custo}
-                    dueDate={tarefa.dataLimite}
-                    onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true) }}
-                    onClickClose={() => setTarefaParaExcluir(tarefa)}
-                    onClickLeft={() => handleReorder(index, 'left')}
-                    onClickRight={() => handleReorder(index, 'right')}
-                  />
-                </li>
-                {tarefaParaExcluir && (
-                  <>
-                    <S.Overlay onClick={() => setTarefaParaExcluir(null)} />
-                    <S.ConfirmDelet>
-                      <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
-                      <div>
-                        <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
-                        <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} /> : 'Excluir'}</button>
-                      </div>
-                    </S.ConfirmDelet>
-                  </>
-                )}
-              </>
-            ))}
-          </ul>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="tasks" type="list" direction="horizontal">
+              {(provided) => (
+                <ul ref={provided.innerRef} {...provided.droppableProps}>
+                  {localTarefas.map((tarefa, index) => (
+                    <>
+                      <li key={tarefa.id}>
+                        <Card
+                          taskId={tarefa.id.toString()}
+                          taskName={tarefa.nome}
+                          cost={tarefa.custo}
+                          dueDate={tarefa.dataLimite}
+                          index={index}
+                          onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true) }}
+                          onClickClose={() => setTarefaParaExcluir(tarefa)}
+                          onClickLeft={() => handleReorder(index, 'left')}
+                          onClickRight={() => handleReorder(index, 'right')}
+                        />
+                      </li>
+                      {tarefaParaExcluir && (
+                        <>
+                          <S.Overlay onClick={() => setTarefaParaExcluir(null)} />
+                          <S.ConfirmDelet>
+                            <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
+                            <div>
+                              <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
+                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} /> : 'Excluir'}</button>
+                            </div>
+                          </S.ConfirmDelet>
+                        </>
+                      )}
+                    </>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
         ) : (
           <S.EmptyState>
             <img src={ilustration} alt="Ilustração" />
@@ -206,7 +249,6 @@ const Dashboard = () => {
         <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}><img src={more} alt='Adicionar tarefa' /></S.AddTaskMobile>
         <Footer />
       </S.Content>
-
     </>
   );
 };

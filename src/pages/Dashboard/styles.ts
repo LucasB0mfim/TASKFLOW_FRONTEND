@@ -69,7 +69,7 @@ export const Sidebar = styled.aside<ContentProps>`
 
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
-  top: 1.7vw;
+  top: 1.9vw;
   left: ${({ isSidebarVisible }) => (isSidebarVisible ? '16.9%' : '2%')};
 
   z-index: 4;
