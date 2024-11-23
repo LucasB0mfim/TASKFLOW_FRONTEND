@@ -173,7 +173,7 @@ export const DueDate = styled.div`
 
     img {
       width: 4vw;
-      height: 2vh;
+      height: 1.8vh;
     }
   }
 `

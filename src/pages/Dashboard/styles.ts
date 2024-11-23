@@ -42,7 +42,7 @@ export const Sidebar = styled.aside<ContentProps>`
   @media(max-width: ${breakpoints.mobile}) {
     width: 88vw;
     height: auto;
-    padding: 10% 5%;
+    padding: 10% 3.5%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
     position: relative;
@@ -519,7 +519,7 @@ export const AddTaskMobile = styled.div`
 
     cursor: pointer;
 
-    background: rgba(0, 0, 0, 0.4);
+    background: #2c3b58;
 
     position: fixed;
     right: 7%;
