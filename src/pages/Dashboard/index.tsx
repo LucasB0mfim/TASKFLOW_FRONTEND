@@ -28,9 +28,9 @@ import * as S from './styles';
 
 const Dashboard = () => {
   const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
-  const [salvarTarefa, { isLoading }] = useSalvarTarefaMutation();
+  const [salvarTarefa, { isLoading, error: erroAoSalvar }] = useSalvarTarefaMutation();
   const [excluirTarefa, { isLoading: excluindo }] = useExcluirTarefaMutation();
-  const [atualizarTarefa, { isLoading: atualizando }] = useAtualizarTarefaMutation();
+  const [atualizarTarefa, { isLoading: atualizando, error: erroAoAtualizar }] = useAtualizarTarefaMutation();
   const [reordenarTarefas] = useReordenarTarefasMutation();
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
@@ -185,6 +185,8 @@ const Dashboard = () => {
         {isLoading && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
         {atualizando && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
         {carregando && <div><Loader size={30}/><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
+        {erroAoAtualizar && <S.Warning>Já existe uma tarefa com esse nome!</S.Warning>}
+        {erroAoSalvar && <S.Warning>Já existe uma tarefa com esse nome!</S.Warning>}
 
         <S.GitHub>
           <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
