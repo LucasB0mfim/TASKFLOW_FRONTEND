@@ -25,30 +25,32 @@ type Props = {
 
 const Card = ({ taskId, taskName, cost, dueDate, index, onClickEdit, onClickClose, onClickLeft, onClickRight }: Props) => {
 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { background } = tagColor();
-
   useEffect(() => {
-    const alterarIcone = () => {
-      setIsMobile(window.innerWidth < 678);
-    };
-    window.addEventListener('resize', alterarIcone);
-    alterarIcone();
-    return () => window.removeEventListener('resize', alterarIcone);
+    if (typeof window !== 'undefined') {
+      const alterarIcone = () => {
+        setIsMobile(window.innerWidth < 678);
+      };
+      window.addEventListener('resize', alterarIcone);
+      alterarIcone();
+      return () => window.removeEventListener('resize', alterarIcone);
+    }
   }, []);
+
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   function tagColor() {
     const costNumber = Number(cost);
+    if (isNaN(costNumber)) {
+      return { background: 'white' };
+    }
     if (costNumber >= 1000) {
-      return {
-        background: 'yellow'
-      };
+      return { background: 'yellow' };
     } else {
-      return {
-        background: 'white'
-      };
+      return { background: 'white' };
     }
   }
+
+  const { background } = tagColor();
 
   return (
     <Draggable draggableId={taskId} index={index}>
