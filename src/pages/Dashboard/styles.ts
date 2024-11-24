@@ -277,6 +277,7 @@ export const Content = styled.main<ContentProps>`
   height: 95vh;
   padding: 6% 0%;
 
+  overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
 
