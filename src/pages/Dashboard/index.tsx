@@ -1,3 +1,4 @@
+// Dependências utilizadas:
 import React from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
@@ -5,6 +6,7 @@ import InputMask from 'react-input-mask';
 import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 
+// Componentes utilizados pelo Dashboard:
 import {
   Tarefa,
   useBuscarTarefasQuery,
@@ -17,6 +19,7 @@ import Card from '../../components/Card';
 import Loader from '../../components/Loader';
 import Footer from '../../components/Footer';
 
+// Images utilizadas pelo Dashboard:
 import more from '../../assets/images/moreIcon.png';
 import close from '../../assets/images/closeIcon.png';
 import gitHub from '../../assets/images/gitHubIcon.png';
@@ -24,19 +27,25 @@ import setaLeft from '../../assets/images/seta-esquerda.png';
 import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
 
+// Importação da estilização do Dashboard.
 import * as S from './styles';
 
 const Dashboard = () => {
+
+  // Constantes para gerenciar o estado da tarefa:
+  const [reordenarTarefas] = useReordenarTarefasMutation();
+  const [excluirTarefa, { isLoading: excluindo }] = useExcluirTarefaMutation();
   const { data: tarefas, refetch, isLoading: carregando } = useBuscarTarefasQuery();
   const [salvarTarefa, { isLoading, error: erroAoSalvar }] = useSalvarTarefaMutation();
-  const [excluirTarefa, { isLoading: excluindo }] = useExcluirTarefaMutation();
   const [atualizarTarefa, { isLoading: atualizando, error: erroAoAtualizar }] = useAtualizarTarefaMutation();
-  const [reordenarTarefas] = useReordenarTarefasMutation();
+
+  // Constantes para melhorar a experiência do usuário:
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [tarefaParaExcluir, setTarefaParaExcluir] = useState<Tarefa | null>(null);
 
+  // Dependência Formik para validar os campos antes de enviar uma tarefa.
   const form = useFormik({
     initialValues: {
       id: 0,
@@ -73,6 +82,7 @@ const Dashboard = () => {
     },
   });
 
+  // Função para re-ordenar a ordem da apresentação na api.
   function reorder<T>(list: T[], startIndex: number, endIndex: number) {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -80,6 +90,7 @@ const Dashboard = () => {
     return result;
   }
 
+  // Função para gerenciar a animção de arrastar os Cards.
   function onDragEnd(result: any) {
     if (!result.destination) {
       return;
@@ -105,17 +116,20 @@ const Dashboard = () => {
     setLocalTarefas(tarefas || []);
   }, [tarefas]);
 
+  // Gerencia o tamanho da tela do usuário.
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
     setIsSidebarVisible(!isMobile);
   }, []);
 
+  // Mostra o erro após não consigar enviar a tarefa para a api.
   const checkInputHasError = (fieldName: string) => {
     const isTouched = fieldName in form.touched;
     const isInvalid = fieldName in form.errors;
     return isTouched && isInvalid;
   };
 
+  // Gerencia a edição de uma tarefa.
   const handleEdit = (tarefa: Tarefa) => {
     setEditandoTarefa(tarefa.id);
     form.setValues({
@@ -126,6 +140,7 @@ const Dashboard = () => {
     });
   };
 
+  // Gerencia a exclusão de uma tarefa.
   const handleDeleteConfirm = async () => {
     if (!tarefaParaExcluir) return;
     try {
@@ -137,6 +152,7 @@ const Dashboard = () => {
     }
   };
 
+  // Gerencia a ordem de apresentação das tarefas com os botões ◀️▶️.
   const handleReorder = async (index: number, direction: 'left' | 'right') => {
     const updatedTarefas = [...localTarefas];
     const swapIndex = direction === 'left' ? index - 1 : index + 1;
