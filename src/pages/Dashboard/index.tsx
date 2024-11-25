@@ -61,13 +61,20 @@ const Dashboard = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         if (editandoTarefa) {
+          const tarefaAtual = localTarefas.find((t) => t.id === editandoTarefa);
+
+          if (!tarefaAtual) {
+            throw new Error('Tarefa não encontrada na lista local.');
+          }
+
           await atualizarTarefa({
             tarefaId: editandoTarefa,
-            tarefa: { ...values, id: editandoTarefa },
+            tarefa: { ...values, id: editandoTarefa, ordem: tarefaAtual.ordem },
           }).unwrap();
         } else {
           await salvarTarefa(values).unwrap();
         }
+
         refetch();
         resetForm();
         setEditandoTarefa(null);
@@ -75,7 +82,6 @@ const Dashboard = () => {
         if (window.innerWidth <= 500) {
           setIsSidebarVisible(!isSidebarVisible);
         }
-
       } catch (error) {
         console.error('Erro ao salvar/atualizar tarefa:', error);
       }

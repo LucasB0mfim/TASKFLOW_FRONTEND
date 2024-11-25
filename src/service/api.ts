@@ -7,6 +7,7 @@ export type Tarefa = {
   nome: string;
   custo: string;
   dataLimite: string;
+  ordem: number;
 };
 
 // Usado para reordenar as tarefas.
