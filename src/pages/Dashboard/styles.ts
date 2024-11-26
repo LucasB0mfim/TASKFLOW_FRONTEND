@@ -274,12 +274,11 @@ export const GitHub = styled.div`
 
 export const Content = styled.main<ContentProps>`
   width: ${({ isSidebarVisible }) => (isSidebarVisible ? '78%' : '100%')};
-  height: 95vh;
-  padding: 6% 0%;
+  height: 100vh;
 
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -369,6 +368,9 @@ export const EmptyState = styled.div`
   justify-content: center;
 
   p {
+    width: 100%;
+    text-align: center;
+
     color: #fff;
     font-size: 1.3vw;
   }
