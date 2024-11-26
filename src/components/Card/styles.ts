@@ -15,6 +15,11 @@ export const CardContainer = styled.div`
   background: rgb(16, 18, 4, 0.9);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
+  img {
+    height: 1.2vw;
+    cursor: pointer;
+  }
+
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 100%;
@@ -36,15 +41,35 @@ export const Header = styled.div`
 `
 
 export const TaskTitle = styled.h2`
-  width: 50%;
+  width: 40%;
   margin-left: 1%;
 
   color: #b6c2cf;
   font-size: 1vw;
 
   @media(max-width: ${breakpoints.mobile}) {
-    width: 50%;
+    width: 40%;
     font-size: 2vh;
+  }
+`
+
+export const CheckTask = styled.div`
+  width: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 1.4vw;
+    height: 1.2vw;
+    cursor: pointer;
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
+    img {
+      height: 2.3vh;
+      width: 2.7vh;
   }
 `
 

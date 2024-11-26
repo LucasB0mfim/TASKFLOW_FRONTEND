@@ -9,6 +9,7 @@ export type Tarefa = {
   custo: string;
   dataLimite: string;
   ordem: number;
+  status: string;
 };
 
 // Usado para reordenar as tarefas.
@@ -22,7 +23,7 @@ const api = createApi({
 
   // URL base da API.
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8080/api',
+    baseUrl: 'https://taskflow-backend-zs9i.onrender.com/api',
   }),
 
   endpoints: (builder) => ({

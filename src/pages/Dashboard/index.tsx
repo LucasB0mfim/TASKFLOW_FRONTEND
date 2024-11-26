@@ -53,6 +53,7 @@ const Dashboard = () => {
       descricao: '',
       custo: '',
       dataLimite: '',
+      status: 'Aberto',
     },
     validationSchema: yup.object({
       nome: yup.string().max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
@@ -146,6 +147,7 @@ const Dashboard = () => {
       descricao: tarefa.descricao,
       custo: tarefa.custo,
       dataLimite: tarefa.dataLimite,
+      status: tarefa.status,
     });
   };
 
@@ -160,6 +162,25 @@ const Dashboard = () => {
       console.error('Erro ao excluir tarefa:', error);
     }
   };
+
+  const handleCheck = async (tarefa: Tarefa) => {
+    try {
+      // Alterna o status entre 'Aberto' e 'Concluido'
+      const novoStatus = tarefa.status === 'Concluido' ? 'Aberto' : 'Concluido';
+
+      // Atualiza o status da tarefa
+      await atualizarTarefa({
+        tarefaId: tarefa.id,
+        tarefa: { ...tarefa, status: novoStatus },
+      }).unwrap();
+
+      // Refaz a requisição para atualizar a lista de tarefas após a atualização
+      refetch();
+    } catch (error) {
+      console.error('Erro ao atualizar status da tarefa:', error);
+    }
+  };
+
 
   // Gerencia a ordem de apresentação das tarefas com os botões ◀️▶️.
   const handleReorder = async (index: number, direction: 'left' | 'right') => {
@@ -237,10 +258,12 @@ const Dashboard = () => {
                           description={tarefa.descricao}
                           dueDate={tarefa.dataLimite}
                           index={index}
-                          onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true) }}
+                          onClickEdit={() => { handleEdit(tarefa); setIsSidebarVisible(true); } }
                           onClickClose={() => setTarefaParaExcluir(tarefa)}
                           onClickLeft={() => handleReorder(index, 'left')}
                           onClickRight={() => handleReorder(index, 'right')}
+                          onClickCheck={() => handleCheck(tarefa)}
+                          status={tarefa.status}
                         />
                       </li>
                       {tarefaParaExcluir && (
