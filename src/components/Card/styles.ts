@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../styles";
 
 export const CardContainer = styled.div`
-  width: 23.7vw;
+  width: 100%;
   height: auto;
   padding: 1.2vw;
 

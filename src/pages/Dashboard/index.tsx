@@ -56,7 +56,7 @@ const Dashboard = () => {
     },
     validationSchema: yup.object({
       nome: yup.string().max(20, 'Você excedeu o limite de 20 caracteres.').required('O nome é obrigatório.'),
-      descricao: yup.string().max(100, 'Você excedeu o limite de 100 caracteres.').required('O nome é obrigatório.'),
+      descricao: yup.string().max(100, 'Você excedeu o limite de 100 caracteres.'),
       custo: yup.number().min(0, 'Valor inválido.').required('O custo é obrigatório.'),
       dataLimite: yup.string().min(0, 'Digite uma data válida.').required('A data limite é obrigatória.'),
     }),
@@ -198,7 +198,6 @@ const Dashboard = () => {
           {form.touched.nome && form.errors.nome && <S.Error>{form.errors.nome}</S.Error>}
 
           <input type="text" placeholder="Digite a descrição (Opcional)" id="descricao" name="descricao" value={form.values.descricao} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('custo') ? 'error' : ''} />
-          {form.touched.descricao && form.errors.descricao && <S.Error>{form.errors.descricao}</S.Error>}
 
           <input type="text" placeholder="Digite o custo" id="custo" name="custo" value={form.values.custo} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('custo') ? 'error' : ''} />
           {form.touched.custo && form.errors.custo && <S.Error>{form.errors.custo}</S.Error>}

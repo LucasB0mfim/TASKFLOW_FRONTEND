@@ -289,10 +289,15 @@ export const Content = styled.main<ContentProps>`
   }
 
   ul {
-    padding: 2%;
+    width: 100%;
+    padding: 6% 2% 2% 2%;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2vw;
+
+    overflow-y: auto;
+    scroll-behavior: smooth;
 
     li {
       height: auto;

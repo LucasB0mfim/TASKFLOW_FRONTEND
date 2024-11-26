@@ -39,10 +39,10 @@ const Card = ({ taskId, taskName, description, cost, dueDate, index, onClickEdit
   const { margin } = distancia();
 
   function distancia() {
-    if (description !== null) {
+    if (description.length > 0) {
       return { margin: '4%' }
     } else {
-      return { margin: '0%' }
+      return { margin: '0' }
     }
   }
 
@@ -99,7 +99,7 @@ const Card = ({ taskId, taskName, description, cost, dueDate, index, onClickEdit
 
           <S.Body>
             <S.CostContainer>
-            <S.CostText style={{ marginBottom: margin }}>{description}</S.CostText>
+              <S.CostText style={{ marginBottom: margin }}>{description}</S.CostText>
               <S.CostText>R$ {cost}.00</S.CostText>
             </S.CostContainer>
           </S.Body>
