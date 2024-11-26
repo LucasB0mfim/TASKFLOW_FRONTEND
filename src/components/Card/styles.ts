@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../styles";
 
 export const CardContainer = styled.div`
-  width: 100%;
+  width: 22vw;
   height: auto;
   padding: 1.2vw;
 
@@ -17,7 +17,7 @@ export const CardContainer = styled.div`
 
 
   @media(max-width: ${breakpoints.mobile}) {
-    width: 23.7vh;
+    width: 100%;
     padding: 3% 2%;
     border-radius: 0.5vh;
   }
@@ -114,7 +114,6 @@ export const CostContainer = styled.div`
   background: #22272b;
 
   @media(max-width: ${breakpoints.mobile}) {
-    height: 5vh;
     border-radius: 0.5vh;
   }
 `

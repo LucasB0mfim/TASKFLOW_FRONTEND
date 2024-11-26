@@ -292,10 +292,12 @@ export const Content = styled.main<ContentProps>`
     width: 100%;
     padding: 6% 2% 2% 2%;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4vw;
 
+    overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
 
@@ -305,14 +307,12 @@ export const Content = styled.main<ContentProps>`
     }
   }
 
-  @media(max-width: 1024px) {
-    ul {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
   @media(max-width: ${breakpoints.tablet}) {
     width: ${({ isSidebarVisible }) => (isSidebarVisible ? '70%' : '100%')};
+
+    ul {
+      gap: 4vh;
+    }
   }
 
   @media(max-width: ${breakpoints.mobile}) {
@@ -323,8 +323,6 @@ export const Content = styled.main<ContentProps>`
 
     ul {
       display: inline;
-      grid-template-columns: 1fr;
-      gap: 5vw;
       padding: 0;
 
       li {
@@ -495,7 +493,7 @@ export const ConfirmDelet = styled.div`
     }
 
     button {
-      width: auto;
+      width: 12vh;
       font-size: 1.8vh;
       border-radius: 0.4vh;
     }

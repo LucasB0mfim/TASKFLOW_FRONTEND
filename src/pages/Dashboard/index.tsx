@@ -55,8 +55,8 @@ const Dashboard = () => {
       dataLimite: '',
     },
     validationSchema: yup.object({
-      nome: yup.string().max(20, 'Você excedeu o limite de 20 caracteres.').required('O nome é obrigatório.'),
-      descricao: yup.string().max(100, 'Você excedeu o limite de 100 caracteres.'),
+      nome: yup.string().max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
+      descricao: yup.string().max(50, 'Você excedeu o limite de 50 caracteres.'),
       custo: yup.number().min(0, 'Valor inválido.').required('O custo é obrigatório.'),
       dataLimite: yup.string().min(0, 'Digite uma data válida.').required('A data limite é obrigatória.'),
     }),
