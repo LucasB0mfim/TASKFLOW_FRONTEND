@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../styles";
 
 export const CardContainer = styled.div`
-  width: 100%;
+  width: 23.7vw;
   height: auto;
   padding: 1.2vw;
 
@@ -17,6 +17,7 @@ export const CardContainer = styled.div`
 
 
   @media(max-width: ${breakpoints.mobile}) {
+    width: 23.7vh;
     padding: 3% 2%;
     border-radius: 0.5vh;
   }
@@ -102,11 +103,12 @@ export const Body = styled.div`
 
 export const CostContainer = styled.div`
   width: 100%;
-  height: 3vw;
-  padding: 2%;
+  padding: 4%;
 
   display: flex;
-  align-items: center;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
 
   border-radius: 0.5vw;
   background: #22272b;
@@ -118,6 +120,7 @@ export const CostContainer = styled.div`
 `
 
 export const CostText = styled.span`
+  width: 100%;
   height: auto;
 
   color: #b6c2cf;

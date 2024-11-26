@@ -18,6 +18,7 @@ import * as S from './styles';
 type Props = {
   taskId: string; // Identificador único da tarefa.
   taskName: string; // Nome da tarefa.
+  description: string; // Descrição da tarefa.
   cost: string; // Custo da tarefa.
   dueDate: string; // Data limite da tarefa.
   index: number; // Posição da tarefa na lista.
@@ -27,10 +28,23 @@ type Props = {
   onClickRight?: () => void; // Função acionada ao mover para a direita ou para baixo (em modo responsivo).
 }
 
-const Card = ({ taskId, taskName, cost, dueDate, index, onClickEdit, onClickClose, onClickLeft, onClickRight }: Props) => {
+const Card = ({ taskId, taskName, description, cost, dueDate, index, onClickEdit, onClickClose, onClickLeft, onClickRight }: Props) => {
 
   // Estado que verifica se a largura da tela é menor que 678px, para alterar os ícones de movimentação.
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  // Determina a cor de fundo da tag.
+  const { background } = tagColor();
+
+  const { margin } = distancia();
+
+  function distancia() {
+    if (description !== null) {
+      return { margin: '4%' }
+    } else {
+      return { margin: '0%' }
+    }
+  }
 
   // Hook que monitora o redimensionamento da tela para ajustar os ícones de acordo com a largura.
   useEffect(() => {
@@ -57,13 +71,11 @@ const Card = ({ taskId, taskName, cost, dueDate, index, onClickEdit, onClickClos
     return costNumber >= 1000 ? { background: 'yellow' } : { background: 'white' };
   }
 
-  // Determina a cor de fundo da tag.
-  const { background } = tagColor();
-
   return (
     <Draggable draggableId={taskId} index={index}>
       {(provided) => (
         <S.CardContainer ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+
           <S.Header>
             <S.TaskTitle>{taskName}</S.TaskTitle>
             <S.OrderControls>
@@ -84,17 +96,21 @@ const Card = ({ taskId, taskName, cost, dueDate, index, onClickEdit, onClickClos
               <img src={closeIcon} alt="Remover tarefa" onClick={onClickClose} />
             </S.ActionButtons>
           </S.Header>
+
           <S.Body>
             <S.CostContainer>
+            <S.CostText style={{ marginBottom: margin }}>{description}</S.CostText>
               <S.CostText>R$ {cost}.00</S.CostText>
             </S.CostContainer>
           </S.Body>
+
           <S.Footer>
             <S.CostTag style={{ background: background }} />
             <S.DueDate>
               <img src={clockIcon} alt="Data limite" /> {dueDate}
             </S.DueDate>
           </S.Footer>
+
         </S.CardContainer>
       )}
     </Draggable>

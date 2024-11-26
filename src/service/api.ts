@@ -5,6 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export type Tarefa = {
   id: number;
   nome: string;
+  descricao: string;
   custo: string;
   dataLimite: string;
   ordem: number;
@@ -21,7 +22,7 @@ const api = createApi({
 
   // URL base da API.
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://taskflow-backend-zs9i.onrender.com/api',
+    baseUrl: 'http://localhost:8080/api',
   }),
 
   endpoints: (builder) => ({
