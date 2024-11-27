@@ -40,6 +40,7 @@ const Dashboard = () => {
   const [atualizarTarefa, { isLoading: atualizando, error: erroAoAtualizar }] = useAtualizarTarefaMutation();
 
   // Constantes para melhorar a experiência do usuário:
+  const [custo, setCusto] = useState<number | null>(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null);
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []);
@@ -216,7 +217,24 @@ const Dashboard = () => {
     } else {
       return 'Adicionar'
     }
-  }
+  };
+
+  const formatCusto = (value: string) => {
+    const numericValue = value.replace(/\D/g, '');
+    if (!numericValue) return '';
+    const formattedValue = (parseFloat(numericValue) / 100).toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    return formattedValue;
+  };
+
+  const handleCustoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value;
+    const formattedValue = formatCusto(rawValue);
+    setCusto(formattedValue ? parseFloat(rawValue.replace(/\D/g, '')) / 100 : null);
+    form.setFieldValue('custo', formattedValue); // Atualiza o estado do Formik
+  };
 
   return (
     <React.Fragment>
@@ -237,7 +255,7 @@ const Dashboard = () => {
           <input type="text" placeholder="Digite uma descrição (Opcional)" id="descricao" name="descricao" value={form.values.descricao} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('descricao') ? 'error' : ''} />
           {form.touched.descricao && form.errors.descricao && <S.Error>{form.errors.descricao}</S.Error>}
 
-          <input type="text" placeholder="Digite o custo" id="custo" name="custo" value={form.values.custo} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('custo') ? 'error' : ''} />
+          <input type="text" placeholder="Digite o custo" value={form.values.custo} onChange={handleCustoChange} onBlur={form.handleBlur} className={checkInputHasError('custo') ? 'error' : ''} />
           {form.touched.custo && form.errors.custo && <S.Error>{form.errors.custo}</S.Error>}
 
           <InputMask mask="99/99/9999" type="text" placeholder="Digite a data limite" id="dataLimite" name="dataLimite" value={form.values.dataLimite} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('dataLimite') ? 'error' : ''} />
