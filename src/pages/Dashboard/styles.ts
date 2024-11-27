@@ -71,7 +71,7 @@ export const Sidebar = styled.aside<ContentProps>`
 export const ToggleButton = styled.button<ToggleButtonProps>`
   position: absolute;
   top: 1.9vw;
-  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '16.9%' : '2%')};
+  left: ${({ isSidebarVisible }) => (isSidebarVisible ? '16.9%' : '3%')};
 
   z-index: 4;
 
@@ -81,7 +81,7 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 
   @media(max-width: ${breakpoints.tablet}) {
     top: 1.6vw;
-    left: ${({ isSidebarVisible }) => (isSidebarVisible ? '23%' : '2%')};
+    left: ${({ isSidebarVisible }) => (isSidebarVisible ? '23%' : '3%')};
   }
 
   @media(max-width: ${breakpoints.mobile}) {
@@ -221,6 +221,14 @@ export const TaskForm = styled.form`
       -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
     }
 
+    @media(max-width: ${breakpoints.tablet}) {
+      height: 4vw;
+
+      &::placeholder {
+      font-size: 1.2vw;
+      }
+    }
+
     @media(max-width: ${breakpoints.mobile}) {
       height: 5vh;
       font-size: 1.3vh;
@@ -276,6 +284,10 @@ export const Content = styled.main<ContentProps>`
 
   @media(max-width: ${breakpoints.tablet}) {
     width: ${({ isSidebarVisible }) => (isSidebarVisible ? '70%' : '100%')};
+
+    ul {
+      padding: 8% 2% 2% 2%;
+    }
   }
 
   @media(max-width: ${breakpoints.mobile}) {
@@ -312,6 +324,11 @@ export const Button = styled.button`
   &:hover {
     transition: all 0.5s ease;
     background: rgb(59, 64, 68, 0.2);
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    height: 4vw;
+    font-size: 1.2vw;
   }
 
   @media(max-width: ${breakpoints.mobile}) {

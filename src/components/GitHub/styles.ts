@@ -12,10 +12,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-size: 0.9vw;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
 
     border: none;
     border-radius: 0.2vw;
@@ -25,11 +22,30 @@ export const Container = styled.div`
       transition: all 0.5s ease;
       background: rgb(59, 64, 68, 0.2);
     }
+
+    p {
+      font-size: 0.9vw;
+      color: rgba(255, 255, 255, 0.8);
+    }
   }
 
   img {
     height: 2.1vw;
     margin-right: 2%;
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    a {
+      height: 4vw;
+
+      img {
+        height: 50%;
+      }
+
+      p {
+        font-size: 1.2vw;
+      }
+    }
   }
 
   @media(max-width: ${breakpoints.mobile}) {

@@ -12,6 +12,10 @@ export const CopyRight = styled.p`
   font-size: 0.8vw;
   text-align: center;
 
+  @media(max-width: ${breakpoints.tablet}) {
+    font-size: 1.4vh;
+  }
+
   @media(max-width: ${breakpoints.mobile}) {
     height: 1.5vh;
     font-size: 1.5vh;
