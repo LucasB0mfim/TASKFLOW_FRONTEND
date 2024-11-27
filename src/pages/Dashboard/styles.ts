@@ -546,7 +546,7 @@ export const Warning = styled.div`
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
   font-size: 1.2vw;
-  margin-top: 10%;
+  margin-top: 2%;
 
   @media(max-width: ${breakpoints.mobile}) {
     font-size: 2vh;

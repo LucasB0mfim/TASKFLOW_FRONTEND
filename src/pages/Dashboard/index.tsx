@@ -206,10 +206,10 @@ const Dashboard = () => {
 
   const status = () => {
     if (isLoading) {
-      return <Loader size={20}/>
+      return <Loader size={20} color='#fff'/>
     }
     if (atualizando) {
-      return <Loader size={20}/>
+      return <Loader size={20} color='#fff'/>
     }
     if (editandoTarefa) {
       return 'Atualizar'
@@ -292,7 +292,7 @@ const Dashboard = () => {
                             </S.TextDelet>
                             <S.ButtonsDelet>
                               <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
-                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} /> : 'Excluir'}</button>
+                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} color='#000'/> : 'Excluir'}</button>
                             </S.ButtonsDelet>
                           </S.ConfirmDelet>
                         </>
@@ -309,7 +309,7 @@ const Dashboard = () => {
             {carregando ?
               (
                 <S.EmptyState>
-                  <Loader size={30} />
+                  <Loader size={30} color='#fff' />
                   <S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning>
                 </S.EmptyState>
               ) :
