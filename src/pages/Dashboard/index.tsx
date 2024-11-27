@@ -23,7 +23,6 @@ import GitHub from '../../components/GitHub';
 // Images utilizadas pelo Dashboard:
 import more from '../../assets/images/moreIcon.png';
 import close from '../../assets/images/closeIcon.png';
-import gitHub from '../../assets/images/gitHubIcon.png';
 import setaLeft from '../../assets/images/seta-esquerda.png';
 import setaRight from '../../assets/images/seta-direita.png';
 import ilustration from '../../assets/images/ilustration.png';
@@ -287,11 +286,14 @@ const Dashboard = () => {
                         <>
                           <S.Overlay onClick={() => setTarefaParaExcluir(null)} />
                           <S.ConfirmDelet>
-                            <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
-                            <div>
+                            <S.TextDelet>
+                              <h2>Excluir Tarefa</h2>
+                              <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
+                            </S.TextDelet>
+                            <S.ButtonsDelet>
                               <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
                               <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} /> : 'Excluir'}</button>
-                            </div>
+                            </S.ButtonsDelet>
                           </S.ConfirmDelet>
                         </>
                       )}

@@ -255,29 +255,27 @@ export const Content = styled.main<ContentProps>`
 
   ul {
     width: 100%;
+    height: auto;
     padding: 6% 2% 2% 2%;
 
     display: flex;
-    justify-content: center;
+    justify-content: start;
     flex-wrap: wrap;
-    gap: 4vw;
 
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
 
     li {
-      height: auto;
       list-style: none;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 3vw;
     }
   }
 
   @media(max-width: ${breakpoints.tablet}) {
     width: ${({ isSidebarVisible }) => (isSidebarVisible ? '70%' : '100%')};
-
-    ul {
-      gap: 4vh;
-    }
   }
 
   @media(max-width: ${breakpoints.mobile}) {
@@ -390,8 +388,8 @@ export const ConfirmDelet = styled.div`
   top: 50%;
   left: 50%;
 
-  width: 35vw;
-  height: 22vh;
+  width: 40vw;
+  height: 15vw;
   padding: 2%;
 
   display: flex;
@@ -400,36 +398,55 @@ export const ConfirmDelet = styled.div`
 
   border: none;
   border-radius: 0.3vw;
-  background: #2c3b58;
+  background: #fff;
 
   z-index: 3;
   transform: translate(-50%, -50%);
 
-  div {
-    display: flex;
-    justify-content: end;
+  @media(max-width: ${breakpoints.mobile}) {
+    width: 90%;
+    height: auto;
+    padding: 4%;
 
-    > button {
-      display: flex;
-      justify-content: center;
-    }
+    border-radius: 0.4vh;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+  }
+`
+
+export const TextDelet = styled.div`
+  h2 {
+    color: #202124;
+    margin-bottom: 4%;
   }
 
   p {
-    color: rgba(255, 255, 255, 0.8);;
+    color: #3c4043;
     font-size: 1.2vw;
-    text-align: center;
   }
 
+  @media(max-width: ${breakpoints.mobile}) {
+    p {
+      font-size: 2.5vh;
+      margin-bottom: 10%;
+    }
+  }
+`
+
+export const ButtonsDelet = styled.div`
+  display: flex;
+  justify-content: end;
+
   button {
+    display: flex;
+    justify-content: center;
+
     width: 6vw;
     padding: 2%;
 
     border-radius: 0.3vw;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #202124;
 
-    color: rgba(255, 255, 255, 0.8);
+    color: #3c4043;
     font-size: 1vw;
     font-weight: bold;
     cursor: pointer;
@@ -445,18 +462,6 @@ export const ConfirmDelet = styled.div`
   }
 
   @media(max-width: ${breakpoints.mobile}) {
-    width: 90%;
-    height: auto;
-    padding: 4%;
-
-    border-radius: 0.4vh;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-
-    p {
-      font-size: 2.5vh;
-      margin-bottom: 10%;
-    }
-
     button {
       width: 12vh;
       font-size: 1.8vh;

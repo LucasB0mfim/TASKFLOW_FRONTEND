@@ -20,6 +20,9 @@ export const CardContainer = styled.div`
     cursor: pointer;
   }
 
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 30vw;
+  }
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 100%;
@@ -47,6 +50,11 @@ export const TaskTitle = styled.h2`
 
   color: #b6c2cf;
   font-size: 1vw;
+
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 35%;
+    font-size: 1.3vw;
+  }
 
   @media(max-width: ${breakpoints.mobile}) {
     font-size: 2vh;
@@ -79,10 +87,14 @@ export const OrderControls = styled.div`
     height: 90%;
     cursor: pointer;
   }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    height: 80%;
+  }
 `
 
 export const ActionButtons = styled.div`
-  width: 15%;
+  width: 18%;
   height: 100%;
 
   display: flex;
@@ -92,6 +104,10 @@ export const ActionButtons = styled.div`
   img {
     height: 100%;
     cursor: pointer;
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    height: 90%;
   }
 `
 
@@ -158,6 +174,11 @@ export const CostTag = styled.div`
   margin-left: 1%;
   border-radius: 50px;
 
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 4vw;
+    height: 80%;
+  }
+
   @media(max-width: ${breakpoints.mobile}) {
     width: 5vh;
     height: 1.8vh;
@@ -181,6 +202,14 @@ export const DueDate = styled.div`
 
   span {
     margin-left: 5%;
+  }
+
+  @media(max-width: ${breakpoints.tablet}) {
+    font-size: 1.3vw;
+
+    img {
+      height: 80%;
+    }
   }
 
   @media(max-width: ${breakpoints.mobile}) {
