@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { breakpoints } from "../../styles";
+import { breakpoints, colors } from "../../styles";
 
 export const CardContainer = styled.div`
   width: 22vw;
@@ -48,7 +48,7 @@ export const TaskTitle = styled.h2`
   width: 40%;
   margin-left: 1%;
 
-  color: #b6c2cf;
+  color: ${colors.lightGray};
   font-size: 1vw;
 
   @media(max-width: ${breakpoints.tablet}) {
@@ -134,7 +134,7 @@ export const CostContainer = styled.div`
   flex-direction: column;
 
   border-radius: 0.5vw;
-  background: #22272b;
+  background: ${colors.darkGray};
 
   @media(max-width: ${breakpoints.mobile}) {
     border-radius: 0.5vh;
@@ -145,7 +145,7 @@ export const CostText = styled.span`
   width: 100%;
   height: auto;
 
-  color: #b6c2cf;
+  color: ${colors.lightGray};
   font-size: 1vw;
   text-align: start;
   word-wrap: break-word;
@@ -193,7 +193,7 @@ export const DueDate = styled.div`
   align-items: center;
   justify-content: end;
 
-  color: #b6c2cf;
+  color: ${colors.lightGray};
   font-size: 1vw;
 
   img {

@@ -25,3 +25,11 @@ export const breakpoints = {
   mobile: '768px',
   tablet: '1024px'
 }
+
+export const colors = {
+  white: '#fff',
+  gray: '#3c4043',
+  lightGray: '#b6c2cf',
+  darkGray: '#22272b',
+  darkBlue: '#2c3b58',
+}

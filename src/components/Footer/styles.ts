@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles";
+import { breakpoints, colors } from "../../styles";
 
 export const CopyRight = styled.p`
   height: 1.5vw;
@@ -8,7 +8,7 @@ export const CopyRight = styled.p`
   align-items: center;
   justify-content: center;
 
-  color: #b6c2cf;
+  color: ${colors.lightGray};
   font-size: 0.8vw;
   text-align: center;
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles";
+import { breakpoints, colors } from "../../styles";
 
 type ContentProps = {
   isSidebarVisible?: boolean;
@@ -54,7 +54,7 @@ export const Sidebar = styled.aside<ContentProps>`
     top: 30%;
     left: 6%;
 
-    background: #2c3b58;
+    background: ${colors.darkBlue};
 
     transition: none;
 
@@ -199,7 +199,7 @@ export const TaskForm = styled.form`
     padding-left: 4%;
     margin-bottom: 0.5vw;
 
-    color: #fff;
+    color: ${colors.white};
 
     outline: none;
     border: none;
@@ -258,7 +258,7 @@ export const Content = styled.main<ContentProps>`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #b6c2cf;
+    background: ${colors.darkGray};
   }
 
   ul {
@@ -354,7 +354,7 @@ export const EmptyState = styled.div`
     width: 100%;
     text-align: center;
 
-    color: #fff;
+    color: ${colors.white};
     font-size: 1.3vw;
   }
 
@@ -374,7 +374,7 @@ export const EmptyState = styled.div`
 `
 
 export const Error = styled.p`
-  color: #fff;
+  color: ${colors.white};
   font-size: 1vw;
   margin-bottom: 1vw;
 
@@ -415,7 +415,7 @@ export const ConfirmDelet = styled.div`
 
   border: none;
   border-radius: 0.5vw;
-  background: #fff;
+  background: ${colors.white};
 
   z-index: 3;
   transform: translate(-50%, -50%);
@@ -432,12 +432,12 @@ export const ConfirmDelet = styled.div`
 
 export const TextDelet = styled.div`
   h2 {
-    color: #202124;
+    color: ${colors.darkGray};
     margin-bottom: 4%;
   }
 
   p {
-    color: #3c4043;
+    color: ${colors.gray};
     font-size: 1.2vw;
   }
 
@@ -463,7 +463,7 @@ export const ButtonsDelet = styled.div`
     border-radius: 0.3vw;
     border: 1px solid #202124;
 
-    color: #3c4043;
+    color: ${colors.gray};
     font-size: 1vw;
     font-weight: bold;
     cursor: pointer;
@@ -527,7 +527,7 @@ export const AddTaskMobile = styled.div`
 
     cursor: pointer;
 
-    background: #2c3b58;
+    background: ${colors.darkBlue};
 
     position: fixed;
     right: 7%;
