@@ -397,7 +397,7 @@ export const ConfirmDelet = styled.div`
   justify-content: space-between;
 
   border: none;
-  border-radius: 0.3vw;
+  border-radius: 0.5vw;
   background: #fff;
 
   z-index: 3;
@@ -405,10 +405,10 @@ export const ConfirmDelet = styled.div`
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 90%;
-    height: auto;
+    height: 50%;
     padding: 4%;
 
-    border-radius: 0.4vh;
+    border-radius: 0.5vh;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
   }
 `
@@ -427,7 +427,7 @@ export const TextDelet = styled.div`
   @media(max-width: ${breakpoints.mobile}) {
     p {
       font-size: 2.5vh;
-      margin-bottom: 10%;
+      margin-top: 10%;
     }
   }
 `
@@ -462,10 +462,24 @@ export const ButtonsDelet = styled.div`
   }
 
   @media(max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+
     button {
-      width: 12vh;
+      width: 100%;
+      height: 6vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.8vh;
-      border-radius: 0.4vh;
+
+      border-radius: 0.5vh;
+      background: transparent;
+
+      &:last-child {
+        margin-left: 0;
+        margin-top: 2%;
+      }
     }
   }
 `
