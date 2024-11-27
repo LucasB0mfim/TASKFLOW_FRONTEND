@@ -5,12 +5,13 @@ import { Draggable } from '@hello-pangea/dnd';
 // Importação de ícones utilizados no card de tarefas.
 import clockIcon from '../../assets/images/time.png';
 import penIcon from '../../assets/images/penIcon.png';
+import check from '../../assets/images/checkIcon.png';
 import closeIcon from '../../assets/images/closeIcon.png';
 import UpArrow from '../../assets/images/seta-para-cima.png';
 import LeftArrow from '../../assets/images/seta-esquerda.png';
 import rightArrow from '../../assets/images/seta-direita.png';
 import downArrow from '../../assets/images/seta-para-baixo.png';
-import check from '../../assets/images/checkIcon.png';
+import checkGreen from '../../assets/images/checkIconGreen.png';
 
 // Importação do estilo do componente, localizado em './styles.ts'.
 import * as S from './styles';
@@ -96,7 +97,8 @@ const Card = ({
             <S.TaskTitle>{taskName}</S.TaskTitle>
 
             <S.CheckTask>
-              <img src={check} alt="Concluído" onClick={onClickCheck} />
+              {status === 'Aberto' && <img src={check} alt="Concluído" onClick={onClickCheck} />}
+              {status === 'Concluido' && <img src={checkGreen} alt="Concluído" onClick={onClickCheck} />}
             </S.CheckTask>
 
             <S.OrderControls>
@@ -128,7 +130,7 @@ const Card = ({
           <S.Footer>
             <S.CostTag style={{ background: background }} />
             <S.DueDate>
-              <img src={clockIcon} alt="Data limite" /> {dueDate}
+              <img src={clockIcon} alt="Data limite" /> <span>{dueDate}</span>
             </S.DueDate>
           </S.Footer>
         </S.CardContainer>

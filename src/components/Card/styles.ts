@@ -30,6 +30,7 @@ export const CardContainer = styled.div`
 
 export const Header = styled.div`
   width: 100%;
+  height: 2.3vh;
 
   display: flex;
   align-items: center;
@@ -48,68 +49,49 @@ export const TaskTitle = styled.h2`
   font-size: 1vw;
 
   @media(max-width: ${breakpoints.mobile}) {
-    width: 40%;
     font-size: 2vh;
   }
 `
 
 export const CheckTask = styled.div`
   width: 10%;
+  height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   img {
-    width: 1.4vw;
-    height: 1.2vw;
+    height: 100%;
     cursor: pointer;
-  }
-
-  @media(max-width: ${breakpoints.mobile}) {
-    img {
-      height: 2.3vh;
-      width: 2.7vh;
   }
 `
 
 export const OrderControls = styled.div`
   width: 15%;
+  height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   img {
-    height: 1vw;
+    height: 90%;
     cursor: pointer;
-  }
-
-  @media(max-width: ${breakpoints.mobile}) {
-    width: 15%;
-
-    img {
-      height: 2vh;
   }
 `
 
 export const ActionButtons = styled.div`
   width: 15%;
+  height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   img {
-    height: 1.2vw;
+    height: 100%;
     cursor: pointer;
-  }
-
-  @media(max-width: ${breakpoints.mobile}) {
-    width: 15%;
-
-    img {
-      height: 2vh;
   }
 `
 
@@ -159,7 +141,7 @@ export const CostText = styled.span`
 
 export const Footer = styled.div`
   widht: 100%;
-  height: auto;
+  height: 2.3vh;
 
   display: flex;
   align-items: end;
@@ -172,7 +154,7 @@ export const Footer = styled.div`
 
 export const CostTag = styled.div`
   width: 3vw;
-  height: 1vw;
+  height: 100%;
   margin-left: 1%;
   border-radius: 50px;
 
@@ -183,6 +165,9 @@ export const CostTag = styled.div`
 `
 
 export const DueDate = styled.div`
+  width: 50%;
+  height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: end;
@@ -191,8 +176,11 @@ export const DueDate = styled.div`
   font-size: 1vw;
 
   img {
-    height: 1vw;
-    margin-right: 5%;
+    height: 100%;
+  }
+
+  span {
+    margin-left: 5%;
   }
 
   @media(max-width: ${breakpoints.mobile}) {
