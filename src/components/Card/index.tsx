@@ -123,7 +123,7 @@ const Card = ({
           <S.Body>
             <S.CostContainer>
               <S.CostText style={{ marginBottom: margin }}>{description}</S.CostText>
-              <S.CostText>R$ {cost}.00</S.CostText>
+              <S.CostText>R$ {cost}</S.CostText>
             </S.CostContainer>
           </S.Body>
 
