@@ -18,6 +18,7 @@ import {
 import Card from '../../components/Card';
 import Loader from '../../components/Loader';
 import Footer from '../../components/Footer';
+import GitHub from '../../components/GitHub';
 
 // Images utilizadas pelo Dashboard:
 import more from '../../assets/images/moreIcon.png';
@@ -204,13 +205,29 @@ const Dashboard = () => {
     }
   };
 
+  const status = () => {
+    if (isLoading) {
+      return <Loader size={20}/>
+    }
+    if (atualizando) {
+      return <Loader size={20}/>
+    }
+    if (editandoTarefa) {
+      return 'Atualizar'
+    } else {
+      return 'Adicionar'
+    }
+  }
+
   return (
     <React.Fragment>
+
       <S.ToggleButton isSidebarVisible={isSidebarVisible} onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
         {isSidebarVisible ? (<S.BoxSetaClose><img src={setaLeft} alt='close' /></S.BoxSetaClose>) : (<S.BoxSetaOpen><img src={setaRight} alt='open' /></S.BoxSetaOpen>)}
       </S.ToggleButton>
 
       <S.Sidebar className={isSidebarVisible ? 'visible' : 'hidden'}>
+
         <S.TaskForm onSubmit={form.handleSubmit}>
 
           <S.Heading>{editandoTarefa ? 'Editar Tarefa' : 'Adicionar tarefa'}<img src={close} alt='Adicionar tarefa' onClick={() => setIsSidebarVisible(!isSidebarVisible)} /></S.Heading>
@@ -227,20 +244,19 @@ const Dashboard = () => {
           <InputMask mask="99/99/9999" type="text" placeholder="Digite a data limite" id="dataLimite" name="dataLimite" value={form.values.dataLimite} onChange={form.handleChange} onBlur={form.handleBlur} className={checkInputHasError('dataLimite') ? 'error' : ''} />
           {form.touched.dataLimite && form.errors.dataLimite && <S.Error>{form.errors.dataLimite}</S.Error>}
 
-          <S.Button type="submit">{editandoTarefa ? 'Atualizar' : 'Adicionar'}</S.Button>
+          <S.Button type="submit">{status()}</S.Button>
           {editandoTarefa && (<S.Button onClick={() => { form.resetForm(); setEditandoTarefa(null) }}>Cancelar</S.Button>)}
         </S.TaskForm>
 
-        {isLoading && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
-        {atualizando && <div><Loader size={30}/><S.Warning>Carregando...</S.Warning></div>}
-        {carregando && <div><Loader size={30}/><S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning></div>}
-        {erroAoAtualizar && <S.Warning>Já existe uma tarefa com esse nome!</S.Warning>}
-        {erroAoSalvar && <S.Warning>Já existe uma tarefa com esse nome!</S.Warning>}
+        <S.Warning>
+          {erroAoAtualizar && <p>Já existe uma tarefa com esse nome!</p>}
+          {erroAoSalvar && <p>Já existe uma tarefa com esse nome!</p>}
+        </S.Warning>
 
-        <S.GitHub>
-          <a href="https://github.com/LucasB0mfim/TASKFLOW_FRONTEND" target='_blank' rel="noreferrer"><img src={gitHub} alt='Código Backend' />Ver código frontend</a>
-          <a href="https://github.com/LucasB0mfim/TASKFLOW_BACKEND" target='_blank' style={{ marginTop: '2%' }} rel="noreferrer"><img src={gitHub} alt='Código Frontend' />Ver código backend</a>
-        </S.GitHub>
+        <div>
+          <GitHub link='https://github.com/LucasB0mfim/TASKFLOW_FRONTEND' destiny='frontend' />
+          <GitHub link='https://github.com/LucasB0mfim/TASKFLOW_BACKEND' destiny='backend' margin='2%' />
+        </div>
       </S.Sidebar>
 
       <S.Content isSidebarVisible={isSidebarVisible}>
@@ -287,10 +303,22 @@ const Dashboard = () => {
             </Droppable>
           </DragDropContext>
         ) : (
-          <S.EmptyState>
-            <img src={ilustration} alt="Ilustração" />
-            <p>Você ainda não adicionou nenhuma tarefa.</p>
-          </S.EmptyState>
+          <>
+            {carregando ?
+              (
+                <S.EmptyState>
+                  <Loader size={30} />
+                  <S.Warning>Estamos iniciando o servidor! Aguarde...</S.Warning>
+                </S.EmptyState>
+              ) :
+              (
+                <S.EmptyState>
+                  <img src={ilustration} alt="Ilustração" />
+                  <p>Você ainda não adicionou nenhuma tarefa.</p>
+                </S.EmptyState>
+              )
+            }
+          </>
         )}
         <S.AddTaskMobile onClick={() => setIsSidebarVisible(!isSidebarVisible)}><img src={more} alt='Adicionar tarefa' /></S.AddTaskMobile>
         <Footer />

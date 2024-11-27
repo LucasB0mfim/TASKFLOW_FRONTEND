@@ -103,7 +103,7 @@ export const BoxSetaClose = styled.div`
   transition: all 0.1s linear;
 
   img {
-    width: 1.3vw;
+    width: 1vw;
   }
 
   &:hover {
@@ -141,7 +141,7 @@ export const BoxSetaOpen = styled.div`
   background: rgb(23, 28, 33, 0.8);
 
   img {
-    width: 1.3vw;
+    width: 1vw;
   }
 
   &:hover {
@@ -234,41 +234,6 @@ export const TaskForm = styled.form`
         font-size: 1.5vh;
       }
     }
-  }
-`
-
-export const GitHub = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  a {
-    height: 3vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 0.9vw;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-
-    border: none;
-    border-radius: 0.2vw;
-    background: rgb(59, 64, 68, 0.5);
-
-    &:hover {
-      transition: all 0.5s ease;
-      background: rgb(59, 64, 68, 0.2);
-    }
-  }
-
-  img {
-    height: 2.1vw;
-    margin-right: 2%;
-  }
-
-  @media(max-width: ${breakpoints.mobile}) {
-    display: none;
   }
 `
 
@@ -541,7 +506,7 @@ export const AddTaskMobile = styled.div`
   }
 `
 
-export const Warning = styled.p`
+export const Warning = styled.div`
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
   font-size: 1.2vw;
