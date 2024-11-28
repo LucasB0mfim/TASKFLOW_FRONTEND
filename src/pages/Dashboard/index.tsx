@@ -311,7 +311,7 @@ const Dashboard = () => {
                               <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
                             </S.TextDelet>
                             <S.ButtonsDelet>
-                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={12} color='yellow'/> : 'Excluir'}</button>
+                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={12} color='#000'/> : 'Excluir'}</button>
                               <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
                             </S.ButtonsDelet>
                           </S.ConfirmDelet>
