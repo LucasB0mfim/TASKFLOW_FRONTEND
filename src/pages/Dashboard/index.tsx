@@ -41,10 +41,15 @@ const Dashboard = () => {
 
   // Estados internos para controle do comportamento da interface:
   const [custo, setCusto] = useState<number | null>(null); // Armazena o custo formatado.
+  const [nomeDuplicado, setNomeDuplicado] = useState(false); // Estado para controlar o aviso de nome duplicado
   const [isSidebarVisible, setIsSidebarVisible] = useState(true); // Controle da visibilidade da barra lateral.
   const [editandoTarefa, setEditandoTarefa] = useState<number | null>(null); // Identifica a tarefa em edição.
   const [localTarefas, setLocalTarefas] = useState<Tarefa[]>(tarefas || []); // Lista local de tarefas para exibição.
   const [tarefaParaExcluir, setTarefaParaExcluir] = useState<Tarefa | null>(null); // Armazena a tarefa marcada para exclusão.
+
+  const checkNomeDuplicado = (nome: any) => {
+    return localTarefas.some(tarefa => tarefa.nome.toLowerCase() === nome.toLowerCase());
+  };
 
   // Configuração do formulário com validação via Formik e Yup:
   const form = useFormik({
@@ -59,11 +64,20 @@ const Dashboard = () => {
     validationSchema: yup.object({
       nome: yup.string().max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
       descricao: yup.string().max(255, 'Você excedeu o limite de 255 caracteres.'),
-      custo: yup.string().min(0, 'Valor inválido.').required('O custo é obrigatório.'),
+      custo: yup.number().min(0, 'Valor inválido.').max(1000000, 'Valor inválido.').required('O custo é obrigatório.'),
       dataLimite: yup.string().min(0, 'Digite uma data válida.').required('A data limite é obrigatória.'),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
+
+        // Verifica se já existe uma tarefa com o mesmo nome
+        if (checkNomeDuplicado(values.nome)) {
+          setNomeDuplicado(true); // Define o estado como true para exibir o aviso
+          return; // Não envia a tarefa se o nome for duplicado
+        } else {
+          setNomeDuplicado(false); // Caso contrário, reseta o estado do nome duplicado
+        }
+
         if (editandoTarefa) {
           // Atualiza a tarefa existente.
           const tarefaAtual = localTarefas.find((t) => t.id === editandoTarefa);
@@ -94,6 +108,8 @@ const Dashboard = () => {
       }
     },
   });
+
+
 
   // Reordenação de itens na lista local.
   function reorder<T>(list: T[], startIndex: number, endIndex: number) {
@@ -276,8 +292,9 @@ const Dashboard = () => {
         </S.TaskForm>
 
         <S.Warning>
+          {nomeDuplicado && <p>Já existe uma tarefa com esse nome!</p>}
           {erroAoAtualizar && <p>Já existe uma tarefa com esse nome!</p>}
-          {erroAoSalvar && <p>Já existe uma tarefa com esse nome!</p>}
+          {erroAoSalvar && <p>Não foi possível adicionar. Por favor, verifique os campos preenchidos e tente novamente.</p>}
         </S.Warning>
 
         <div>
