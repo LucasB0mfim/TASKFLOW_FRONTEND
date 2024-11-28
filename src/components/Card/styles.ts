@@ -10,9 +10,9 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  border-radius: 0.5vw;
+  border-radius: 0.6vw;
 
-  background: rgb(16, 18, 4, 0.9);
+  background: rgb(16, 18, 4, 0.8);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
   img {
@@ -27,7 +27,7 @@ export const CardContainer = styled.div`
   @media(max-width: ${breakpoints.mobile}) {
     width: 100%;
     padding: 3% 2%;
-    border-radius: 0.5vh;
+    border-radius: 0.8vh;
   }
 `
 

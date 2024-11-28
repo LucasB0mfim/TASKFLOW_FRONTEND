@@ -240,6 +240,14 @@ const Dashboard = () => {
     form.setFieldValue('custo', formattedValue); // Atualiza o estado do Formik
   };
 
+  const direcao = () => {
+    if (window.length > 768) {
+      return 'horizontal'
+    } else {
+      return 'vertical'
+    }
+  }
+
   return (
     <React.Fragment>
 
@@ -281,7 +289,7 @@ const Dashboard = () => {
       <S.Content isSidebarVisible={isSidebarVisible}>
         {localTarefas.length > 0 ? (
           <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="tasks" type="list" direction="horizontal">
+            <Droppable droppableId="tasks" type="list" direction={direcao()}>
               {(provided) => (
                 <ul ref={provided.innerRef} {...provided.droppableProps}>
                   {localTarefas.map((tarefa, index) => (

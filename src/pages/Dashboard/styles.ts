@@ -256,14 +256,6 @@ export const Content = styled.main<ContentProps>`
   flex-direction: column;
   justify-content: space-between;
 
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${colors.darkGray};
-  }
-
   ul {
     width: 100%;
     height: auto;
@@ -276,6 +268,14 @@ export const Content = styled.main<ContentProps>`
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${colors.white};
+    }
 
     li {
       list-style: none;
@@ -302,6 +302,10 @@ export const Content = styled.main<ContentProps>`
     ul {
       display: inline;
       padding: 0;
+
+      &::-webkit-scrollbar {
+        width: 0px;
+      }
 
       li {
         margin-bottom: 3vh;
@@ -435,7 +439,7 @@ export const ConfirmDelet = styled.div`
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 90%;
-    padding: 10% 4%;
+    padding: 15% 4%;
   }
 `
 
@@ -530,8 +534,8 @@ export const ButtonsDelet = styled.div`
 
   @media(max-width: ${breakpoints.mobile}) {
     button {
-      height: 5vh;
-      font-size: 1.55vh;
+      height: 6vh;
+      font-size: 2vh;
     }
   }
 `
