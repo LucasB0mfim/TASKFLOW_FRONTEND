@@ -202,7 +202,7 @@ const Dashboard = () => {
   // Define o rótulo do botão principal (salvar ou atualizar).
   const status = () => {
     if (isLoading) {
-      return <Loader size={20} color='#fff'/>
+      return <Loader size={15} color='#fff'/>
     }
     if (atualizando) {
       return <Loader size={20} color='#fff'/>
@@ -311,8 +311,8 @@ const Dashboard = () => {
                               <p>Você tem certeza que deseja excluir a tarefa <b>{tarefaParaExcluir.nome}</b>?</p>
                             </S.TextDelet>
                             <S.ButtonsDelet>
+                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={12} color='yellow'/> : 'Excluir'}</button>
                               <button onClick={() => setTarefaParaExcluir(null)}>Cancelar</button>
-                              <button onClick={handleDeleteConfirm}>{excluindo ? <Loader size={11} color='#000'/> : 'Excluir'}</button>
                             </S.ButtonsDelet>
                           </S.ConfirmDelet>
                         </>

@@ -45,18 +45,15 @@ export const Sidebar = styled.aside<ContentProps>`
     padding: 8%;
 
     display: ${({ isSidebarVisible }) => (isSidebarVisible ? 'none' : 'flex')};
-    position: relative;
-
-    border-radius: 0.5vh;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
 
     position: fixed;
     top: 30%;
     left: 6%;
 
-    background: ${colors.darkBlue};
-
     transition: none;
+    border-radius: 0.5vh;
+    background: ${colors.darkBlue};
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
 
     &.hidden {
       transform: translateX(-120%);
@@ -241,6 +238,12 @@ export const TaskForm = styled.form`
       &::placeholder {
         font-size: 1.5vh;
       }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0px 0px 0px 1000px #566279 inset !important;
+        box-shadow: 0px 0px 0px 1000px #566279 inset !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
+      }
     }
   }
 `
@@ -392,11 +395,11 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
 
   @media(max-width: ${breakpoints.mobile}) {
-    background: rgba(0, 0, 0, 0.4);
+    background: ${colors.darkBlue};
   }
 `
 
@@ -417,16 +420,22 @@ export const ConfirmDelet = styled.div`
   border-radius: 0.5vw;
   background: ${colors.white};
 
-  z-index: 3;
+  z-index: 4;
   transform: translate(-50%, -50%);
+
+  @media(max-width: ${breakpoints.tablet}) {
+    width: 80%;
+    height: auto;
+    padding: 6% 4%;
+
+    border-radius: 0.5vh;
+    background: ${colors.darkBlue};
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+  }
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 90%;
-    height: 50%;
-    padding: 4%;
-
-    border-radius: 0.5vh;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+    padding: 10% 4%;
   }
 `
 
@@ -441,10 +450,26 @@ export const TextDelet = styled.div`
     font-size: 1.2vw;
   }
 
-  @media(max-width: ${breakpoints.mobile}) {
+  @media(max-width: ${breakpoints.tablet}) {
+    h2 {
+      color: ${colors.white};
+      margin: 0;
+    }
+
     p {
+      color: ${colors.lightGray};
+      margin: 10% 0%;
       font-size: 2.5vh;
-      margin-top: 10%;
+    }
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
     }
   }
 `
@@ -478,25 +503,35 @@ export const ButtonsDelet = styled.div`
     }
   }
 
-  @media(max-width: ${breakpoints.mobile}) {
+  @media(max-width: ${breakpoints.tablet}) {
     flex-direction: column;
+    z-index: 1;
 
     button {
       width: 100%;
-      height: 6vh;
+      height: 6vw;
 
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8vh;
+      font-size: 1.55vw;
 
+      color: ${colors.lightGray};
       border-radius: 0.5vh;
+      border: 2px solid rgba(255, 255, 255, 0.2);
       background: transparent;
 
       &:last-child {
         margin-left: 0;
         margin-top: 2%;
       }
+    }
+  }
+
+  @media(max-width: ${breakpoints.mobile}) {
+    button {
+      height: 5vh;
+      font-size: 1.55vh;
     }
   }
 `
@@ -523,7 +558,7 @@ export const AddTaskMobile = styled.div`
     align-items: center;
     justify-content: center;
 
-    z-index: 3;
+    z-index: 1;
 
     cursor: pointer;
 

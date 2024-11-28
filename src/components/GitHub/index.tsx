@@ -13,7 +13,7 @@ const GitHub = ({ link, destiny, margin }: Props) => (
   <Container style={{marginTop: margin}}>
     <a href={link} target='_blank' rel="noreferrer">
       <img src={gitHub} alt="GitHub"/>
-      <p>Veja o códio {destiny}</p>
+      <p>Veja o código {destiny}</p>
     </a>
   </Container>
 )
