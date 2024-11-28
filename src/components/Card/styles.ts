@@ -12,7 +12,7 @@ export const CardContainer = styled.div`
 
   border-radius: 0.6vw;
 
-  background: rgb(16, 18, 4, 0.8);
+  background: rgb(16, 18, 4, 0.7);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 
   img {
