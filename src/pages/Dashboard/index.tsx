@@ -241,10 +241,10 @@ const Dashboard = () => {
   };
 
   const direcao = () => {
-    if (window.length > 768) {
-      return 'horizontal'
-    } else {
+    if (window.innerWidth <= 768) {
       return 'vertical'
+    } else {
+      return 'horizontal'
     }
   }
 

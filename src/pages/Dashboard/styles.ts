@@ -399,7 +399,7 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.12);
   z-index: 4;
 
   @media(max-width: ${breakpoints.mobile}) {
@@ -430,16 +430,16 @@ export const ConfirmDelet = styled.div`
   @media(max-width: ${breakpoints.tablet}) {
     width: 80%;
     height: auto;
-    padding: 6% 4%;
+    padding: 6% 4% 4% 4%;
 
-    border-radius: 0.5vh;
+    border-radius: 0.8vh;
     background: ${colors.darkBlue};
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   @media(max-width: ${breakpoints.mobile}) {
     width: 90%;
-    padding: 15% 4%;
+    padding: 10% 4%;
   }
 `
 
