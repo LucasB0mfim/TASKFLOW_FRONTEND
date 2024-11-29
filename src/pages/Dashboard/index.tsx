@@ -65,7 +65,13 @@ const Dashboard = () => {
       nome: yup.string().max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
       descricao: yup.string().max(255, 'Você excedeu o limite de 255 caracteres.'),
       custo: yup.number().min(0, 'Valor inválido.').max(1000000, 'Valor inválido.').required('O custo é obrigatório.'),
-      dataLimite: yup.string().min(0, 'Digite uma data válida.').required('A data limite é obrigatória.'),
+      dataLimite: yup.string().test('valid-date-length', 'Digite uma data válida.', (value) => {
+        // Remove caracteres não numéricos
+        const rawValue = value?.replace(/\D/g, '') || '';
+
+        // Verifica se há exatamente 8 números
+        return rawValue.length === 8;
+      }).required('A data limite é obrigatória.'),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
