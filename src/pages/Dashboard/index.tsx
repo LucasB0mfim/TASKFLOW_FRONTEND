@@ -62,9 +62,9 @@ const Dashboard = () => {
       status: 'Aberto',
     },
     validationSchema: yup.object({
-      nome: yup.string().max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
+      nome: yup.string().transform(value => value.trim()).min(2, 'Digite um nome maior.').max(15, 'Você excedeu o limite de 15 caracteres.').required('O nome é obrigatório.'),
       descricao: yup.string().max(255, 'Você excedeu o limite de 255 caracteres.'),
-      custo: yup.number().min(0, 'Valor inválido.').max(1000000, 'Valor inválido.').required('O custo é obrigatório.'),
+      custo: yup.number().min(0.01, 'O preço é obrigatório.').max(1000000, 'Valor inválido. Nem Elon Musk paga!').required('O custo é obrigatório.'),
       dataLimite: yup.string().test('valid-date-length', 'Digite uma data válida.', (value) => {
         // Remove caracteres não numéricos
         const rawValue = value?.replace(/\D/g, '') || '';
